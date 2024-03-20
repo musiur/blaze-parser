@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 const Home = () => {
   return (
@@ -14,7 +15,11 @@ const Home = () => {
             Simplify your hiring process and save time with our powerful parsing
             tool.
           </p>
-          <Button>Get Started</Button>
+          <div>
+            <Link href="/tokenizer">
+              <Button>Get Started</Button>
+            </Link>
+          </div>
         </div>
         <div className="md:w-1/2 mt-5 md:mt-0">
           <Image

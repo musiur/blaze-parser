@@ -4,6 +4,7 @@ import { Fragment, useState } from "react";
 import { Menu } from "lucide-react";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
+import NLP from "compromise";
 
 type TLink = { id: number; text: string; link: string };
 
@@ -27,6 +28,14 @@ const Navbar = () => {
       link: "#sourcecode",
     },
   ];
+  // console.log(
+  //   NLP(
+  //     "Natural Language Processing with JavaScript -Tokenization,Parts of Speech & Entity Recognition"
+  //   )
+  //     .sentences()
+  //     .terms()
+  //     .out("array")
+  // );
   return (
     <Fragment>
       <header className="bg-white/60 backdrop-blur-md [&>*]:text-primary sticky top-0 z-50 border-b">
