@@ -15,7 +15,7 @@ const Navbar = () => {
     {
       id: 0,
       text: "How it works",
-      link: "#howitworks",
+      link: "/how-it-works",
     },
     {
       id: 2,

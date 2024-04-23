@@ -1,23 +1,32 @@
 import { Button } from "@/components/ui/button";
+import { ArrowUpRight, MoveUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 const Home = () => {
   return (
-    <div className="container section">
-      <section className="flex flex-col md:flex-row items-center justify-between gap-10">
+    <div className="container">
+      <section className="section flex flex-col md:flex-row items-center justify-between gap-10">
         <div className="md:w-1/2 space-y-8">
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-3">
-            Welcome to Resume Parser
+          <h1 className="text-4xl md:text-6xl font-bold mb-3">
+            The Ultimate Resume/CV Parsing Tool
           </h1>
           <p className="text-lg md:text-xl mb-3">
             Parse resumes effortlessly with our cutting-edge technology.
             Simplify your hiring process and save time with our powerful parsing
             tool.
           </p>
-          <div>
-            <Link href="/tokenizer">
-              <Button>Get Started</Button>
+          <div className="flex gap-4">
+            <Link href="/get-started">
+              <Button className="uppercase">Get Started</Button>
+            </Link>
+            <Link href="/how-it-works">
+              <Button
+                variant="outline"
+                className="items-center gap-2 uppercase"
+              >
+                Know more <ArrowUpRight className="w-4 h-4" />
+              </Button>
             </Link>
           </div>
         </div>
