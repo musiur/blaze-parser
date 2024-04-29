@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const FormSchema = z.object({
   pdfFile: z.string(),
@@ -51,6 +51,11 @@ export function TextExtractionFromPDF() {
       );
     }
   };
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("extractedData", pdfFileText);
+    }
+  }, [pdfFileText])
 
   return (
     <div className="space-y-10">
