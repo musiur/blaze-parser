@@ -4,7 +4,7 @@ import { Fragment, useState } from "react";
 import { Menu } from "lucide-react";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
-import NLP from "compromise";
+import BrandLogo from "../molecules/brand-logo";
 
 type TLink = { id: number; text: string; link: string };
 
@@ -28,21 +28,12 @@ const Navbar = () => {
       link: "#sourcecode",
     },
   ];
-  // console.log(
-  //   NLP(
-  //     "Natural Language Processing with JavaScript -Tokenization,Parts of Speech & Entity Recognition"
-  //   )
-  //     .sentences()
-  //     .terms()
-  //     .out("array")
-  // );
+
   return (
     <Fragment>
       <header className="bg-white/60 backdrop-blur-md [&>*]:text-primary sticky top-0 z-50 border-b">
-        <nav className="container py-6 z-50 flex items-center justify-between gap-10">
-          <Link href="/" className="text-xl md:text-2xl font-bold">
-            BlazeParser
-          </Link>
+        <nav className="container py-4 z-50 flex items-center justify-between gap-10">
+          <BrandLogo />
           <ul className="hidden md:flex items-center justify-end gap-8">
             {Links.map((item: TLink) => {
               const { id, text, link } = item;

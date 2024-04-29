@@ -4,19 +4,15 @@
  */
 
 import Link from "next/link";
+import BrandLogo from "../molecules/brand-logo";
 
 const Footer = () => {
   return (
     <>
-      <footer className="w-full bg-white text-gray-600 py-12 md:py-16 lg:py-20">
+      <footer className="w-full bg-white py-12 md:py-16 lg:py-20">
         <div className="container mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <MountainIcon className="h-6 w-6 text-gray-900" />
-              <span className="text-gray-900 font-semibold text-lg">
-                Acme Inc
-              </span>
-            </div>
+            <BrandLogo />
             <div className="text-sm leading-relaxed">
               123 Main St, Anytown USA
               <br />

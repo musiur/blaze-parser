@@ -6,8 +6,8 @@ import FeatureSection from "./_utils/components/feature.section";
 
 const Home = () => {
   return (
-    <div className="container">
-      <section className="section flex flex-col md:flex-row items-center justify-between gap-10">
+    <>
+      <section className="container section flex flex-col md:flex-row items-center justify-between gap-10">
         <div className="md:w-1/2 space-y-8">
           <h1 className="text-4xl md:text-6xl font-bold mb-3">
             The Ultimate Resume/CV Parsing Tool
@@ -42,7 +42,7 @@ const Home = () => {
         </div>
       </section>
       <FeatureSection />
-    </div>
+    </>
   );
 };
 
