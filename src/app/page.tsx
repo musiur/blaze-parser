@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowUpRight, MoveUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import FeatureSection from "./_utils/components/feature.section";
 
 const Home = () => {
   return (
@@ -40,6 +41,7 @@ const Home = () => {
           />
         </div>
       </section>
+      <FeatureSection />
     </div>
   );
 };
