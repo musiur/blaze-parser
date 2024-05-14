@@ -1,89 +1,92 @@
-"use client";
 import Link from "next/link";
-import { Fragment, useState } from "react";
-import { Menu } from "lucide-react";
-import clsx from "clsx";
-import { useRouter } from "next/navigation";
-import BrandLogo from "../molecules/brand-logo";
+import { Button } from "@/components/ui/button";
+import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
+import { MenuIcon, MountainIcon } from "lucide-react";
+import NavbarVisibility from "./navbar-visibility";
 
-type TLink = { id: number; text: string; link: string };
-
-const Navbar = () => {
-  const [showMobileNav, setShowMobileNav] = useState(false);
-  const router = useRouter();
-  const Links: TLink[] = [
+export default function Navbar() {
+  const NavLinkItems = [
     {
-      id: 0,
-      text: "How it works",
-      link: "/how-it-works",
+      id: 1,
+      text: "Home",
+      link: "/",
     },
     {
       id: 2,
-      text: "About",
-      link: "#about",
+      text: "About us",
+      link: "/about-us",
     },
     {
       id: 3,
-      text: "Source Code",
-      link: "#sourcecode",
+      text: "Contact us",
+      link: "/contact-us",
     },
   ];
-
   return (
-    <Fragment>
-      <header className="bg-white/60 backdrop-blur-md [&>*]:text-primary sticky top-0 z-50 border-b">
-        <nav className="container py-4 z-50 flex items-center justify-between gap-10">
-          <BrandLogo />
-          <ul className="hidden md:flex items-center justify-end gap-8">
-            {Links.map((item: TLink) => {
-              const { id, text, link } = item;
-              return (
-                <li key={id} className="hover:text-primary hover:underline">
-                  <Link href={link}>{text}</Link>
-                </li>
-              );
-            })}
-          </ul>
-          <Menu
-            role="button"
-            onClick={() => setShowMobileNav(true)}
-            className="flex md:hidden"
-          />
-        </nav>
-      </header>
-      <div
-        className={clsx(
-          "fixed top-0 left-0 w-full h-[100dvh] bg-white/60 backdrop-blur z-50 transition ease-in-out duration-500",
-          {
-            "translate-y-[-100dvh]": !showMobileNav,
-            "translate-y-[0] flex md:hidden": showMobileNav,
-          }
-        )}
-        onClick={() => {
-          setShowMobileNav(false);
-        }}
-      >
-        <ul className="space-y-8 container section">
-          {Links.map((item: TLink) => {
-            const { id, text, link } = item;
-            return (
-              <li key={id} className="hover:text-primary hover:underline">
-                <span
-                  role="button"
-                  onClick={() => {
-                    router.push(link);
-                    setShowMobileNav(false);
-                  }}
-                >
-                  {text}
-                </span>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </Fragment>
+    <NavbarVisibility>
+      <nav className="bg-white shadow-sm dark:bg-gray-950">
+        <div className="container flex items-center justify-between h-16 ">
+          <Link
+            className="flex items-center text-lg font-semibold space-x-2"
+            href="/"
+          >
+            <MountainIcon className="h-6 w-6" />
+            <span className="font-bold">BlazeParser</span>
+          </Link>
+          <nav className="hidden items-center text-sm font-medium md:flex">
+            {NavLinkItems.map(
+              (item: { id: number; text: string; link: string }) => {
+                const { id, text, link } = item;
+                return (
+                  <Link
+                    key={id}
+                    className="relative inline-block rounded-none bg-transparent text-gray-900 before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-gradient-to-b   before:transition-all before:duration-300 hover:before:w-full hover:bg-gradient-to-b from-white to-gray-100 hover:text-gray-900 dark:text-gray-50 dark:before:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-50 p-4"
+                    href={link}
+                  >
+                    {text}
+                  </Link>
+                );
+              }
+            )}
+          </nav>
+          <div className="flex items-center space-x-2">
+            <Button className="hidden sm:inline-flex" variant="outline">
+              Sign In
+            </Button>
+            <Button className="hidden sm:inline-flex">Sign Up</Button>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button className="sm:hidden" size="icon" variant="ghost">
+                  <MenuIcon className="h-6 w-6" />
+                  <span className="sr-only">Toggle navigation menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right">
+                <div className="grid gap-4 p-4">
+                  {NavLinkItems.map(
+                    (item: { id: number; text: string; link: string }) => {
+                      const { id, text, link } = item;
+                      return (
+                        <Link
+                          key={id}
+                          className="relative inline-block rounded-none bg-transparent text-gray-900 before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-gradient-to-b   before:transition-all before:duration-300 hover:before:w-full hover:bg-gradient-to-b from-white to-gray-100 hover:text-gray-900 dark:text-gray-50 dark:before:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-50 p-4"
+                          href={link}
+                        >
+                          {text}
+                        </Link>
+                      );
+                    }
+                  )}
+                  <div className="flex flex-col space-y-2">
+                    <Button variant="outline">Sign In</Button>
+                    <Button>Sign Up</Button>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
+        </div>
+      </nav>
+    </NavbarVisibility>
   );
-};
-
-export default Navbar;
+}

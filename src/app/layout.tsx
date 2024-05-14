@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Navbar from "@/components/layout/navbar";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/layout/footer";
+import ContextWrapper from "@/lib/contexts/context-wrapper";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -23,17 +24,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
-        )}
-      >
-        <Navbar />
-        {children}
-        <Footer />
-        <Toaster />
-      </body>
+      <ContextWrapper>
+        <body
+          className={cn(
+            "min-h-screen bg-background font-sans antialiased",
+            fontSans.variable
+          )}
+        >
+          <Navbar />
+          {children}
+          <Footer />
+          <Toaster />
+        </body>
+      </ContextWrapper>
     </html>
   );
 }
