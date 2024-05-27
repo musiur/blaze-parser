@@ -6,6 +6,8 @@ import jwt from 'jsonwebtoken';
 import User from "./user.model";
 import { T_UserSchema, UserSchema } from "./user.schema";
 import { SA_ErrorHandler } from "@/lib/utils";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function A_LoginUser(email: string, password: string) {
     try {
@@ -15,7 +17,7 @@ export async function A_LoginUser(email: string, password: string) {
         if (!user) {
             throw new Error('User not found');
         }
-        console.log(user)
+
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             throw new Error('Invalid credentials');
@@ -25,17 +27,22 @@ export async function A_LoginUser(email: string, password: string) {
             expiresIn: '1h',
         });
 
+        const userdata = {
+            _id: user._id.toString(),
+            name: user.name,
+            email: user.email,
+            role: user.role
+        };
+        cookies().set("token", token);
+        cookies().set("user", JSON.stringify(userdata));
+
         return {
             success: true,
             message: "Login successful",
-            token,
-            user: {
-                _id: user._id.toString(),
-                name: user.name,
-                email: user.email,
-                role: user.role
-            }
+            user: userdata
         }
+
+
     } catch (error) {
         return SA_ErrorHandler(error);
     }
@@ -71,6 +78,19 @@ export async function A_CreateUsers(data: T_UserSchema) {
             message: "User created successfully"
         }
     } catch (error: any) {
+        return SA_ErrorHandler(error);
+    }
+}
+
+export async function A_Logout() {
+    try {
+        cookies().delete("token");
+        cookies().delete("user");
+        return {
+            success: true,
+            message: "Logout successful"
+        }
+    } catch (error) {
         return SA_ErrorHandler(error);
     }
 }

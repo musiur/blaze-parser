@@ -19,8 +19,6 @@ import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import { A_LoginUser } from "../_utils/auth.controller";
-import { useAuth } from "@/lib/contexts/auth.context";
-import { useRouter } from "next/navigation";
 
 const FormSchema = z.object({
   email: z.string().min(2),
@@ -28,8 +26,6 @@ const FormSchema = z.object({
 });
 
 export default function LoginForm() {
-  const { login } = useAuth();
-  const router = useRouter();
   const [showPass, setShowPass] = useState<boolean>(false);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -40,33 +36,16 @@ export default function LoginForm() {
   });
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    const result = await A_LoginUser(data.email, data.password);
-    console.log(result);
+    const result: any = await A_LoginUser(data.email, data.password);
 
     toast({
       title: "Login",
-      variant: result.success ? "default" : "destructive",
-      description: <p>{result.message}</p>,
+      variant: result?.success ? "default" : "destructive",
+      description: <p>{result?.message}</p>,
     });
 
-    if (result.success) {
-      // @ts-ignore
-      login(result.user!);
-      // @ts-ignore
-      localStorage.setItem("refreshToken", result.token);
-      // @ts-ignore
-      if (result.user.role === "admin") {
-        router.push("/dashboard/admin");
-      }
-      // @ts-ignore
-      if (result.user.role === "recruiter") {
-        router.push("/dashboard/recruiter");
-      }
-      // @ts-ignore
-      if (result.user.role === "applicant") {
-        router.push("/dashboard/applicant");
-      }
-      return;
+    if (result.success && typeof window !== "undefined") {
+      window.location.replace("/dashboard");
     }
   }
 
