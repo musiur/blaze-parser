@@ -5,20 +5,13 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Form } from "@/components/ui/form";
 import { toast } from "@/components/ui/use-toast";
-import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
 import Link from "next/link";
 import { A_LoginUser } from "../_utils/auth.controller";
+import InputX from "@/components/molecules/input.x";
+import SubmitX from "@/components/molecules/submit.x";
+import ResponseX from "@/components/molecules/response.x";
 
 const FormSchema = z.object({
   email: z.string().min(2),
@@ -26,7 +19,6 @@ const FormSchema = z.object({
 });
 
 export default function LoginForm() {
-  const [showPass, setShowPass] = useState<boolean>(false);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -38,11 +30,7 @@ export default function LoginForm() {
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     const result: any = await A_LoginUser(data.email, data.password);
 
-    toast({
-      title: "Login",
-      variant: result?.success ? "default" : "destructive",
-      description: <p>{result?.message}</p>,
-    });
+    ResponseX({ title: "Login", result });
 
     if (result.success && typeof window !== "undefined") {
       window.location.replace("/dashboard");
@@ -62,48 +50,24 @@ export default function LoginForm() {
               Enter your email and password to access your account.
             </p>
           </div>
-          <FormField
-            control={form.control}
+          <InputX
+            form={form}
             name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="e.g. john@example.xyz" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            type="text"
+            label="Email"
+            placeholder="e.g john@foo.bar"
           />
-          <FormField
-            control={form.control}
+          <InputX
+            form={form}
             name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <div className="relative">
-                    <Input {...field} type={showPass ? "text" : "password"} />
-                    <div
-                      role="button"
-                      onClick={() => setShowPass(!showPass)}
-                      className="absolute top-[6px] right-1 h-6 w-6 rounded-full bg-gray-100 flex items-center justify-center [&>svg]:w-3 [&>svg]:h-3 [&>svg]:storke-[1.2px]"
-                    >
-                      {showPass ? <Eye /> : <EyeOff />}
-                    </div>
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            type="password"
+            label="Password"
           />
-          <Button
-            type="submit"
+          <SubmitX
+            pending={form.formState.isSubmitting}
+            text="Login"
             className="w-full"
-            disabled={form.formState.isSubmitting}
-          >
-            {form.formState.isSubmitting ? "Login..." : "Login"}
-          </Button>
+          />
 
           <div className="py-4">
             Don&apos;t have account?&nbsp;

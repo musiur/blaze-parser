@@ -12,17 +12,15 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/components/ui/form";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/use-toast";
-import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
 import Link from "next/link";
 import { A_CreateUsers } from "../_utils/auth.controller";
 import { T_UserSchema } from "../_utils/user.schema";
 import { useRouter } from "next/navigation";
+import InputX from "@/components/molecules/input.x";
+import SubmitX from "@/components/molecules/submit.x";
+import ResponseX from "@/components/molecules/response.x";
 
 const FormSchema = z.object({
   name: z.string().min(2),
@@ -33,7 +31,6 @@ const FormSchema = z.object({
 
 export default function RegisterForm() {
   const router = useRouter();
-  const [showPass, setShowPass] = useState<boolean>(false);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -49,15 +46,10 @@ export default function RegisterForm() {
       ...data,
       role: data.role ? "recruiter" : "applicant",
     };
-    console.log(payload);
-    const result = await A_CreateUsers(payload);
-    console.log(result);
 
-    toast({
-      title: "Registration",
-      variant: result.success ? "default" : "destructive",
-      description: <p>{result.message}</p>,
-    });
+    const result = await A_CreateUsers(payload);
+
+    ResponseX({ title: "Register", result });
 
     if (result.success) {
       router.push("/auth/login");
@@ -78,53 +70,25 @@ export default function RegisterForm() {
               Your data will be store for future usages
             </p>
           </div>
-          <FormField
-            control={form.control}
+          <InputX
+            form={form}
             name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="e.g. jahidul Islam" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            type="text"
+            label="Name"
+            placeholder="e.g John Doe"
           />
-          <FormField
-            control={form.control}
+          <InputX
+            form={form}
             name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="e.g. jahidul@islam.xyz" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            type="text"
+            label="Email"
+            placeholder="e.g john@foo.bar"
           />
-          <FormField
-            control={form.control}
+          <InputX
+            form={form}
             name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <div className="relative">
-                    <Input {...field} type={showPass ? "text" : "password"} />
-                    <div
-                      role="button"
-                      onClick={() => setShowPass(!showPass)}
-                      className="absolute top-[6px] right-1 h-6 w-6 rounded-full bg-gray-100 flex items-center justify-center [&>svg]:w-3 [&>svg]:h-3 [&>svg]:storke-[1.2px]"
-                    >
-                      {showPass ? <Eye /> : <EyeOff />}
-                    </div>
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            type="password"
+            label="Password"
           />
           <FormField
             control={form.control}
@@ -148,13 +112,11 @@ export default function RegisterForm() {
               </FormItem>
             )}
           />
-          <Button
-            type="submit"
+          <SubmitX
+            pending={form.formState.isSubmitting}
+            text="Register"
             className="w-full"
-            disabled={form.formState.isSubmitting}
-          >
-            {form.formState.isSubmitting ? "Registering..." : "Register"}
-          </Button>
+          />
 
           <div className="py-4">
             Already have account?&nbsp;
