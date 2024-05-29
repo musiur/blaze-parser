@@ -3,12 +3,13 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { GetOpeningsRecruiter } from "../_utils/openings/opening.controller";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import TableAction from "../_utils/components/table-action";
 
 const Page = async () => {
   let openings: any[] = [];
   try {
     const result = await GetOpeningsRecruiter();
-    console.log(result);
+    // console.log("------", result);
     openings = result?.data || [];
   } catch (error) {
     console.log(error);
@@ -38,7 +39,10 @@ const Page = async () => {
                         <td>{title}</td>
                         <td>{location}</td>
                         <td>{salary}</td>
-                        <td>Actions</td>
+                        <TableAction
+                          data={opening}
+                          path="/dashboard/openings"
+                        />
                       </tr>
                     );
                   })

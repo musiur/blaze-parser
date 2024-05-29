@@ -13,7 +13,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
 
-    --primary: 240 5.9% 10%;
+    --primary: 240 100% 50%;
+    /* Indigo */
     --primary-foreground: 0 0% 98%;
 
     --secondary: 240 4.8% 95.9%;
@@ -45,7 +46,8 @@
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 0 0% 98%;
+    --primary: 240 100% 40%;
+    /* Darker Indigo */
     --primary-foreground: 240 5.9% 10%;
 
     --secondary: 240 3.7% 15.9%;
@@ -66,9 +68,10 @@
   }
 }
 
+
 @layer base {
   * {
-    @apply border-border;
+    @apply p-0 m-0 min-w-0 box-border;
   }
 
   body {
@@ -87,4 +90,9 @@
 th,
 td {
   @apply px-8 py-2 min-w-[120px] text-left;
+}
+
+button {
+  @apply items-center gap-2 leading-none;
+
 }

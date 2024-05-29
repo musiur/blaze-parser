@@ -4,8 +4,8 @@ import dbConnect from "@/lib/dbconnect";
 import { cookies } from "next/headers"
 import { IOpening, Opening } from "./opening.model";
 import { Application } from "../applications/application.model";
-import { Document, Types } from "mongoose";
 import { revalidatePath } from "next/cache";
+
 
 export const GetOpenings = async () => {
     try {
@@ -31,6 +31,32 @@ export const GetOpenings = async () => {
         return {
             success: true,
             data: response,
+        };
+    } catch (error) {
+        return {
+            success: false,
+            message: "Something went wrong",
+        }
+    }
+}
+
+export const GetOpening = async (_id: string) => {
+    try {
+        dbConnect();
+
+        const response = await Opening.find({ _id });
+
+        if (!response.length) {
+            return {
+                success: false,
+                message: "No openings found",
+                data: [],
+            }
+        }
+
+        return {
+            success: true,
+            data: JSON.parse(JSON.stringify(response))[0],
         };
     } catch (error) {
         return {
@@ -67,10 +93,12 @@ export const GetOpeningsRecruiter = async () => {
                 data: [],
             }
         }
-
+        const data = response.filter((item) => item.recruiter === user._id);
         return {
             success: true,
-            data: response.filter((item) => item.recruiter === user._id),
+            data: data.map((item) => {
+                return JSON.parse(JSON.stringify(item))
+            }),
         };
     } catch (error) {
         return {
@@ -132,10 +160,12 @@ export const UpdateOpening = async (data: any, _id: string) => {
             }
         }
 
-        const response = await Opening.findOneAndUpdate({ _id }, data);
+        await Opening.findOneAndUpdate({ _id }, data);
+
+        revalidatePath("/dashboard/openings")
         return {
             success: true,
-            data: response,
+            message: "Opening updated successfully",
         }
 
     } catch (error) {
@@ -158,10 +188,12 @@ export const DeleteOpening = async (_id: string) => {
         }
         await Application.deleteMany({ recruiterId: _id });
 
-        const response = await Opening.findOneAndDelete({ _id });
+        await Opening.findOneAndDelete({ _id });
+
+        revalidatePath("/dashboard/openings")
         return {
             success: true,
-            data: response,
+            message: "Successfully deleted"
         }
 
     } catch (error) {
