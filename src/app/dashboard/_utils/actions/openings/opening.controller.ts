@@ -2,9 +2,9 @@
 
 import dbConnect from "@/lib/dbconnect";
 import { cookies } from "next/headers"
-import { IOpening, Opening } from "./opening.model";
-import { Application } from "../applications/application.model";
+import { Opening } from "./opening.model";
 import { revalidatePath } from "next/cache";
+import { Application } from "../applications/application.model";
 
 
 export const GetOpenings = async () => {
@@ -30,7 +30,7 @@ export const GetOpenings = async () => {
 
         return {
             success: true,
-            data: response,
+            data: JSON.parse(JSON.stringify(response)),
         };
     } catch (error) {
         return {

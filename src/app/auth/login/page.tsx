@@ -4,11 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { toast } from "@/components/ui/use-toast";
 import Link from "next/link";
-import { A_LoginUser } from "../_utils/auth.controller";
+import { A_LoginUser } from "../_utils/actions/auth.controller";
 import InputX from "@/components/molecules/input.x";
 import SubmitX from "@/components/molecules/submit.x";
 import ResponseX from "@/components/molecules/response.x";
@@ -42,7 +40,7 @@ export default function LoginForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="max-w-[520px] min-w-[280px] w-[460px] space-y-6 p-4 md:p-6 border shadow-xl rounded-lg"
+          className="max-w-[320px] min-w-[280px] w-[460px] space-y-6 p-4 md:p-6 border shadow-xl rounded-lg"
         >
           <div className="space-y-2">
             <h3 className="text-xl md:text-2xl font-bold">Login</h3>

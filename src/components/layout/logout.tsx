@@ -1,6 +1,6 @@
 "use client";
 
-import { A_Logout } from "@/app/auth/_utils/auth.controller";
+import { A_Logout } from "@/app/auth/_utils/actions/auth.controller";
 import { toast } from "../ui/use-toast";
 import { LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";

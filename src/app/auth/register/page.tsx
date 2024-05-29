@@ -15,8 +15,8 @@ import {
 } from "@/components/ui/form";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
-import { A_CreateUsers } from "../_utils/auth.controller";
-import { T_UserSchema } from "../_utils/user.schema";
+import { A_CreateUsers } from "../_utils/actions/auth.controller";
+import { T_UserSchema } from "../_utils/actions/user.schema";
 import { useRouter } from "next/navigation";
 import InputX from "@/components/molecules/input.x";
 import SubmitX from "@/components/molecules/submit.x";
@@ -62,7 +62,7 @@ export default function RegisterForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="max-w-[520px] min-w-[280px] w-[460px] space-y-6 p-4 md:p-6 border shadow-xl rounded-lg"
+          className="max-w-[320px] min-w-[280px] w-[460px] space-y-6 p-4 md:p-6 border shadow-xl rounded-lg"
         >
           <div className="space-y-2">
             <h3 className="text-xl md:text-2xl font-bold">Register</h3>

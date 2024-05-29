@@ -30,6 +30,7 @@ export function TextExtractionFromPDF() {
   const [pdfFileText, setPdfFileText] = useState("");
   const [selectdPdfFileName, setSelectdPdfFileName] =
     useState("No file selected");
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -55,7 +56,7 @@ export function TextExtractionFromPDF() {
     if (typeof window !== "undefined") {
       window.localStorage.setItem("extractedData", pdfFileText);
     }
-  }, [pdfFileText])
+  }, [pdfFileText]);
 
   return (
     <div className="space-y-10">

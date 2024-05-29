@@ -2,24 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/use-toast";
-import {
-  OpeningSchema,
-  T_OpeningSchema,
-} from "../../_utils/openings/opening.schema";
+import { Form } from "@/components/ui/form";
 import ResponseX from "@/components/molecules/response.x";
 import InputX from "@/components/molecules/input.x";
 import SubmitX from "@/components/molecules/submit.x";
@@ -30,8 +13,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { PostOpening } from "../../_utils/openings/opening.controller";
 import { useRouter } from "next/navigation";
+import {
+  OpeningSchema,
+  T_OpeningSchema,
+} from "../../_utils/actions/openings/opening.schema";
+import { PostOpening } from "../../_utils/actions/openings/opening.controller";
 
 const Page = () => {
   const router = useRouter();

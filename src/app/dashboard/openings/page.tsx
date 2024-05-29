@@ -1,60 +1,66 @@
 import { Button } from "@/components/ui/button";
 import { cookies } from "next/headers";
 import Link from "next/link";
-import { GetOpeningsRecruiter } from "../_utils/openings/opening.controller";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import TableAction from "../_utils/components/table-action";
+import {
+  GetOpenings,
+  GetOpeningsRecruiter,
+} from "../_utils/actions/openings/opening.controller";
 
 const Page = async () => {
   let openings: any[] = [];
+  let userdata: any = null;
   try {
-    const result = await GetOpeningsRecruiter();
-    // console.log("------", result);
+    userdata = JSON.parse(cookies().get("user")?.value || "");
+    const result =
+      userdata?.role === "recruiter"
+        ? await GetOpeningsRecruiter()
+        : await GetOpenings();
     openings = result?.data || [];
   } catch (error) {
     console.log(error);
   }
   return (
     <div className="space-y-8">
-      <Card>
-        <CardHeader>
-          <CardTitle>Openings</CardTitle>
-        </CardHeader>
-        <CardContent className="overflow-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="bg-primary text-white">
-                <th>Role</th>
-                <th>Location</th>
-                <th>Salary</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {openings.length
-                ? openings.map((opening) => {
-                    const { _id, title, salary, location } = opening;
-                    return (
-                      <tr key={_id} className="border-b">
-                        <td>{title}</td>
-                        <td>{location}</td>
-                        <td>{salary}</td>
-                        <TableAction
-                          data={opening}
-                          path="/dashboard/openings"
-                        />
-                      </tr>
-                    );
-                  })
-                : "No data found!"}
-            </tbody>
-          </table>
-        </CardContent>
-      </Card>
-      <div className="flex justify-end">
+      <div className="flex justify-between">
+        <h2 className="text-lg md:text-xl font-semibold">Openings</h2>
         <Link href="/dashboard/openings/open">
           <Button>Open</Button>
         </Link>
+      </div>
+
+      <div className="overflow-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="bg-secondary text-primary">
+              <th>Role</th>
+              <th>Location</th>
+              <th>Salary</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {openings.length ? (
+              openings.map((opening) => {
+                const { _id, title, salary, location } = opening;
+                return (
+                  <tr key={_id} className="border-b border-r">
+                    <td className="border-l">{title}</td>
+                    <td className="border-l">{location}</td>
+                    <td className="border-x">{salary}</td>
+                    <TableAction
+                      data={opening}
+                      path="/dashboard/openings"
+                      role={userdata?.role || ""}
+                    />
+                  </tr>
+                );
+              })
+            ) : (
+              <tr className="text-center">No data found!</tr>
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );

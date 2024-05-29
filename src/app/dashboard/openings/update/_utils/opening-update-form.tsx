@@ -14,14 +14,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
-import { UpdateOpening } from "@/app/dashboard/_utils/openings/opening.controller";
-import {
-  OpeningSchema,
-  T_OpeningSchema,
-} from "@/app/dashboard/_utils/openings/opening.schema";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
+import {
+  OpeningSchema,
+  T_OpeningSchema,
+} from "@/app/dashboard/_utils/actions/openings/opening.schema";
+import { UpdateOpening } from "@/app/dashboard/_utils/actions/openings/opening.controller";
 
 const OpeningUpdateForm = ({
   _id,
