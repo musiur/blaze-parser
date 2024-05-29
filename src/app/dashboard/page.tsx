@@ -1,6 +1,6 @@
-import Statistics from "./_utils/statistics";
-import RecentApplicationsTable from "./_utils/recent-applications-table";
-import ApplicantUpdates from "./_utils/applicants-update";
+import Statistics from "./_utils/components/statistics";
+import RecentApplicationsTable from "./_utils/components/recent-applications-table";
+import ApplicantUpdates from "./_utils/components/applicants-update";
 
 export default function RecruiterDashboard() {
   return (

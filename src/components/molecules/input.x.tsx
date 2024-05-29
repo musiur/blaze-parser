@@ -25,7 +25,7 @@ import { Textarea } from "../ui/textarea";
 import { Eye, EyeOff } from "lucide-react";
 import clsx from "clsx";
 
-type inputType = "text" | "password" | "textarea";
+type inputType = "text" | "password" | "textarea" | "number";
 
 const InputX = ({
   form,
@@ -49,9 +49,24 @@ const InputX = ({
    * All Input fields in an Object Scaffold
    */
 
-  const inputFields = {
+  const inputFields: {
+    text: Function;
+    number: Function;
+    textarea: Function;
+    password: Function;
+  } = {
     text: (field: any) => (
-      <Input placeholder={placeholder} {...field} type={type} />
+      <Input placeholder={placeholder} type={type} {...field} />
+    ),
+    number: (field: any) => (
+      <Input
+        placeholder={placeholder}
+        type={type}
+        value={form.watch(name)}
+        onChange={(e) => {
+          form.setValue(name, parseInt(e.target.value));
+        }}
+      />
     ),
     textarea: (field: any) => (
       <Textarea placeholder={placeholder} {...field} type={type} rows="8" />
@@ -100,7 +115,7 @@ const InputX = ({
           <FormControl>
             {
               // @ts-ignore
-              inputFields[type](field)
+              inputFields[type] ? inputFields[type](field) : null
             }
           </FormControl>
           <FormMessage />

@@ -1,4 +1,3 @@
-import bcrypt from 'bcryptjs';
 import mongoose, { Schema, Document, Model } from 'mongoose';
 import { T_UserSchema } from './user.schema';
 

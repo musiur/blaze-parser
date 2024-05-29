@@ -1,7 +1,7 @@
 import PrivateRoute from "@/components/layout/private-route";
 import { ReactElement } from "react";
-import Header from "./_utils/header";
-import SideNav from "./_utils/sidenav";
+import Header from "./_utils/components/header";
+import SideNav from "./_utils/components/sidenav";
 
 const DashboardLayout = ({ children }: { children: ReactElement }) => {
   return (

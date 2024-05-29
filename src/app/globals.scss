@@ -83,3 +83,8 @@
 .section {
   @apply py-[48px];
 }
+
+th,
+td {
+  @apply px-8 py-2 min-w-[120px] text-left;
+}

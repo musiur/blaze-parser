@@ -7,7 +7,6 @@ import User from "./user.model";
 import { T_UserSchema, UserSchema } from "./user.schema";
 import { SA_ErrorHandler } from "@/lib/utils";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 export async function A_LoginUser(email: string, password: string) {
     try {
