@@ -30,10 +30,12 @@ export async function A_LoginUser(email: string, password: string) {
             _id: user._id.toString(),
             name: user.name,
             email: user.email,
-            role: user.role
+            role: user.role,
+            resumeData: user.resumeData
         };
+        console.log(userdata)
         cookies().set("token", token);
-        cookies().set("user", JSON.stringify(userdata));
+        cookies().set("user", JSON.stringify({ ...userdata, resumeData: user?.resumeData?.slice(0, 100) || "" }));
 
         return {
             success: true,

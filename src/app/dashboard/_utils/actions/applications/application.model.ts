@@ -5,41 +5,20 @@ import { T_ApplicationSchema } from './application.schema';
 export interface IApplication extends Document, T_ApplicationSchema { }
 
 const ApplicationSchema: Schema<IApplication> = new Schema({
-    title: {
+    applicantId: {
         type: String,
         required: false,
     },
 
-    description: {
+    openingId: {
         type: String,
         required: true,
     },
 
-    recruiter: {
-        type: String,
-        required: true,
-    },
-
-    salary: {
+    similarity: {
         type: Number,
-        required: false,
-    },
-
-    jobType: {
-        type: String,
-        enum: ["full-time", "part-time", "cobtract", "remote"],
-        default: "full-time"
-    },
-
-    location: {
-        type: String,
         required: true,
     },
-
-    applications: {
-        type: [String],
-        required: false,
-    }
 
 });
 

@@ -3,6 +3,7 @@
 import dbConnect from "@/lib/dbconnect";
 import User from "./user.model";
 import { SA_ErrorHandler } from "@/lib/utils";
+import { cookies } from "next/headers";
 
 export async function A_GetUsers() {
     try {
@@ -11,6 +12,38 @@ export async function A_GetUsers() {
         return {
             success: true,
             data: users
+        }
+    } catch (e) {
+        return SA_ErrorHandler(e)
+    }
+}
+
+export async function A_GetUser() {
+    try {
+        await dbConnect();
+        const token = cookies().get("token")?.value;
+        const userdata = JSON.parse(cookies().get("user")?.value || "")
+
+        if (!token) {
+            return {
+                success: false,
+                message: "No token found",
+            };
+        }
+
+        if (!userdata) {
+            return {
+                success: false,
+                message: "No user found",
+            };
+        }
+
+
+        const users = await User.find({ _id: userdata._id });
+        console.log(users)
+        return {
+            success: true,
+            data: JSON.parse(JSON.stringify(users))[0]
         }
     } catch (e) {
         return SA_ErrorHandler(e)

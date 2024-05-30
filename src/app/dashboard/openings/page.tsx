@@ -57,7 +57,9 @@ const Page = async () => {
                 );
               })
             ) : (
-              <tr className="text-center">No data found!</tr>
+              <tr className="text-center">
+                <td className="w-full text-center py-8f">No data found!</td>
+              </tr>
             )}
           </tbody>
         </table>

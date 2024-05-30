@@ -4,14 +4,16 @@ import { Button } from "@/components/ui/button";
 import clsx from "clsx";
 import { Sun } from "lucide-react";
 import { useState } from "react";
+import { PostApplication } from "../actions/applications/application.controller";
 
 const Apply = ({ _id }: { _id: string }) => {
   const [pending, setPending] = useState(false);
   const applyNow = async () => {
     setPending(true);
     // setPending(false);
-    setTimeout(() => setPending(false), 2000);
-    console.log(_id);
+    const result = await PostApplication({ openingId: _id });
+    console.log(result);
+    setPending(false);
   };
   return (
     <Button onClick={applyNow} disabled={pending} className="gap-0">

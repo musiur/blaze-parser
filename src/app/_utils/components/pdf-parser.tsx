@@ -61,12 +61,6 @@ export function PdfParser() {
     }
   };
 
-  // useEffect(() => {
-  //   if (pdfFileText) {
-  //     UploadResumeContent();
-  //   }
-  // }, [pdfFileText]);
-
   return (
     <div className="space-y-10">
       <Form {...form}>
