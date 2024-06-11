@@ -19,12 +19,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useEffect, useState } from "react";
-import { Upload } from "lucide-react";
+import { useState } from "react";
+import { Sun, Upload } from "lucide-react";
 import { UploadResumeAction } from "../actions/resume-upload";
 
 const FormSchema = z.object({
-  pdfFile: z.string(),
+  pdfFile: z.string().min(10),
 });
 
 export function PdfParser() {
@@ -44,9 +44,12 @@ export function PdfParser() {
 
     try {
       const result = await UploadResumeAction(pdfFileText);
-      console.log(result);
+      console.log({ result });
+      if (result.success) {
+        window.location.reload();
+      }
     } catch (error) {
-      throw new Error("Couldnot update resume content in user");
+      throw new Error("Could not update resume content in user");
     }
 
     if (!data.pdfFile) {
@@ -88,9 +91,8 @@ export function PdfParser() {
                         // getting file text extraction
                         pdfToText(file)
                           .then((text: any) => {
-                            // console.log(text, "<--");
                             setPdfFileText(text);
-                            // getting file name
+                            form.setValue("pdfFile", text);
                             setSelectdPdfFileName(file.name);
                           })
                           .catch((error: any) => {
@@ -108,8 +110,12 @@ export function PdfParser() {
           />
           <div className="flex justify-end">
             <Button type="submit">
-              <Upload className="w-4 h-4" />
-              Upload
+              {form.formState.isSubmitting ? (
+                <Sun className="w-4 h-4 animate-spin" />
+              ) : (
+                <Upload className="w-4 h-4" />
+              )}
+              {form.formState.isSubmitting ? "Uploading" : "Upload"}
             </Button>
           </div>
         </form>

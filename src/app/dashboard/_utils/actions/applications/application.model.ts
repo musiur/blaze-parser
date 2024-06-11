@@ -15,8 +15,48 @@ const ApplicationSchema: Schema<IApplication> = new Schema({
         required: true,
     },
 
+    recruiterId: {
+        type: String,
+        required: true,
+    },
+
+    title: {
+        type: String,
+        required: true,
+    },
+
+    applicant: {
+        type: String,
+        required: true,
+    },
+
+    recruiter: {
+        type: String,
+        required: true,
+    },
+
+    location: {
+        type: String,
+        required: true,
+    },
+
+    jobType: {
+        type: String,
+        required: true,
+    },
+
     similarity: {
         type: Number,
+        required: true,
+    },
+
+    status: {
+        type: String,
+        required: true,
+    },
+
+    appliedAt: {
+        type: Date,
         required: true,
     },
 
