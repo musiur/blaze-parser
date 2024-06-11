@@ -6,7 +6,7 @@ const Page = async () => {
   console.log(result);
   return (
     <div className="">
-      {result?.data?.resumeData ? (
+      {result?.data ? (
         <div className="space-y-4">
           <h3 className="font-semibold text-lg md:text-xl">Your resume</h3>
           <div className="bg-gray-100 p-4 rounded-lg">

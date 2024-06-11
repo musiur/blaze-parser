@@ -24,9 +24,11 @@ const Page = async () => {
     <div className="space-y-8">
       <div className="flex justify-between">
         <h2 className="text-lg md:text-xl font-semibold">Openings</h2>
-        <Link href="/dashboard/openings/open">
-          <Button>Open</Button>
-        </Link>
+        {userdata?.role === "recruiter" ? (
+          <Link href="/dashboard/openings/open">
+            <Button>Open</Button>
+          </Link>
+        ) : null}
       </div>
 
       <div className="overflow-auto">
