@@ -2,7 +2,7 @@ import { PdfParser } from "@/app/_utils/components/pdf-parser";
 import { A_GetUser } from "@/app/auth/_utils/actions/user.controller";
 
 const Page = async () => {
-  const result = await A_GetUser();
+  const result: any = await A_GetUser();
   console.log(result);
   return (
     <div className="">
