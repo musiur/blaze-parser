@@ -50,10 +50,10 @@ export default function Navbar() {
             )}
           </nav>
           <div className="flex items-center space-x-2">
-            <Button className="hidden sm:inline-flex" variant="outline">
+            <Link href="/auth/login"><Button className="hidden sm:inline-flex" variant="outline">
               Sign In
-            </Button>
-            <Button className="hidden sm:inline-flex">Sign Up</Button>
+            </Button></Link>
+            <Link href="/auth/register"><Button className="hidden sm:inline-flex">Sign Up</Button></Link>
             <Sheet>
               <SheetTrigger asChild>
                 <Button className="sm:hidden" size="icon" variant="ghost">

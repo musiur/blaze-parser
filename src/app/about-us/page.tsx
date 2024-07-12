@@ -15,12 +15,12 @@ export default function AboutUs() {
       designation: "Project Manager",
       image: "https://github.com/shadcn.png",
     },
-    {
-      id: 3,
-      name: "Shamimur Rahaman",
-      designation: "Research & Development",
-      image: "https://github.com/shadcn.png",
-    },
+    // {
+    //   id: 3,
+    //   name: "Shamimur Rahaman",
+    //   designation: "Research & Development",
+    //   image: "https://github.com/shadcn.png",
+    // },
     {
       id: 4,
       name: "Sumaiya Haque Bithy",
