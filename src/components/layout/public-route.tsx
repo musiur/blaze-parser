@@ -2,12 +2,12 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { ReactElement } from "react";
 
-const PrivateRoute = ({ children }: { children: ReactElement }) => {
+const PublicRoute = ({ children }: { children: ReactElement }) => {
   const token = cookies().get("token");
-  if (!token) {
-    redirect("/auth/login");
+  if (token) {
+    redirect("/");
   }
   return children;
 };
 
-export default PrivateRoute;
+export default PublicRoute;

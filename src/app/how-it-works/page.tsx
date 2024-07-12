@@ -1,4 +1,4 @@
-import { TextExtractionFromPDF } from "../_utils/extract-text-from-pdf";
+import { TextExtractionFromPDF } from "../_utils/components/extract-text-from-pdf";
 
 const GetStarted = () => {
   return (

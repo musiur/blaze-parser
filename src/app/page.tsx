@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight, MoveUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import FeatureSection from "./_utils/components/feature.section";
@@ -10,7 +10,12 @@ const Home = () => {
       <section className="container section flex flex-col md:flex-row items-center justify-between gap-10">
         <div className="md:w-1/2 space-y-8">
           <h1 className="text-4xl md:text-6xl font-bold mb-3">
-            The Ultimate Resume/CV Parsing Tool
+            The&nbsp;Ultimate
+            <br />
+            <span className="text-4xl md:text-6xl font-bold text-primary">
+              Resume/CV Parsing
+            </span>
+            &nbsp;Tool
           </h1>
           <p className="text-lg md:text-xl mb-3">
             Parse resumes effortlessly with our cutting-edge technology.
@@ -33,7 +38,7 @@ const Home = () => {
         </div>
         <div className="md:w-1/2 mt-5 md:mt-0">
           <Image
-            src="/heroimage.png"
+            src="/image.png"
             alt="Resume Parser"
             width={1000}
             height={1000}

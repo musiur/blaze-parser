@@ -1,4 +1,3 @@
-import bcrypt from 'bcryptjs';
 import mongoose, { Schema, Document, Model } from 'mongoose';
 import { T_UserSchema } from './user.schema';
 
@@ -19,21 +18,16 @@ const UserSchema: Schema<IUser> = new Schema({
         required: true,
         minlength: 8,
     },
+    resumeData: {
+        type: String,
+        required: false,
+    },
     role: {
         type: String,
         enum: ["admin", "recruiter", "applicant"],
         default: "applicant",
     },
 });
-
-// UserSchema.pre('save', async function (next) {
-//     if (!this.isModified('password')) {
-//         return next();
-//     }
-//     const salt = await bcrypt.genSalt(10);
-//     this.password = await bcrypt.hash(this.password, salt);
-//     next();
-// });
 
 const User: Model<IUser> = mongoose.models.User || mongoose.model<IUser>('User', UserSchema);
 

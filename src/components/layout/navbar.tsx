@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
 import { MenuIcon, MountainIcon } from "lucide-react";
 import NavbarVisibility from "./navbar-visibility";
+import AvatarToggler from "./avatar-toggler";
 
 export default function Navbar() {
   const NavLinkItems = [
@@ -78,8 +79,7 @@ export default function Navbar() {
                     }
                   )}
                   <div className="flex flex-col space-y-2">
-                    <Button variant="outline">Sign In</Button>
-                    <Button>Sign Up</Button>
+                    <AvatarToggler />
                   </div>
                 </div>
               </SheetContent>
