@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/button";
 import { cookies } from "next/headers";
-import Link from "next/link";
 import TableAction from "../_utils/components/table-action";
 import {
   GetApplicationsApplicant,
@@ -16,19 +14,16 @@ const Page = async () => {
       userdata?.role === "recruiter"
         ? await GetApplicationsRecruiters()
         : await GetApplicationsApplicant();
-    openings = result?.data || [];
-
-    console.log(result);
+    openings =
+      result?.data?.sort((a: any, b: any) => b.similarity - a.similarity) || [];
   } catch (error) {
-    console.log(error);
+    // need to console to see error
   }
+  console.log(openings);
   return (
     <div className="space-y-8">
       <div className="flex justify-between">
         <h2 className="text-lg md:text-xl font-semibold">Applications</h2>
-        {/* <Link href="/dashboard/openings/open">
-          <Button>Open</Button>
-        </Link> */}
       </div>
 
       <div className="overflow-auto">

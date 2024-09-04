@@ -9,10 +9,12 @@ const TableAction = ({
   data,
   path,
   role = "applicant",
+  tableType = "applications",
 }: {
   data: any;
   path: string;
   role?: string;
+  tableType?: "applications" | "openings";
 }) => {
   const { _id } = data;
   return (
@@ -31,9 +33,9 @@ const TableAction = ({
           </Link>
           <DeleteAction action={DeleteOpening} _id={_id} />
         </>
-      ) : (
+      ) : tableType === "openings" ? (
         <Apply _id={_id} />
-      )}
+      ) : null}
     </td>
   );
 };

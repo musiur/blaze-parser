@@ -38,7 +38,6 @@ const OpeningUpdateForm = ({
 
   async function onSubmit(data: T_OpeningSchema) {
     const result = await UpdateOpening(data, _id);
-    console.log(result);
     ResponseX({ title: "Update opening", result });
     result?.success && router.push("/dashboard/openings");
   }

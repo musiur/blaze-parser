@@ -40,7 +40,6 @@ export async function A_GetUser() {
 
 
         const users = await User.find({ _id: userdata._id });
-        console.log(users)
         return {
             success: true,
             data: JSON.parse(JSON.stringify(users))[0]

@@ -21,8 +21,6 @@ export const UploadResumeAction = async (data: string) => {
       { resumeData: data }
     );
 
-    console.log(response);
-
     if (!response) {
       return {
         success: false,

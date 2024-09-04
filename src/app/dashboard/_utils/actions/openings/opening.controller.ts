@@ -141,7 +141,6 @@ export const PostOpening = async (data: any) => {
         }
 
     } catch (error) {
-        console.log(error)
         return {
             success: false,
             message: "Something went wrong",

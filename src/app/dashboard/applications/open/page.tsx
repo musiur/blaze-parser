@@ -37,7 +37,6 @@ const Page = () => {
 
   async function onSubmit(data: T_OpeningSchema) {
     const result = await PostOpening(data);
-    console.log(result);
     ResponseX({ title: "New opening", result });
     result?.success && router.push("/dashboard/openings");
   }

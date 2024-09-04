@@ -23,7 +23,7 @@ const Home = () => {
             tool.
           </p>
           <div className="flex gap-4">
-            <Link href="/dashboard/recruiter">
+            <Link href="/dashboard">
               <Button className="uppercase">Get Started</Button>
             </Link>
             <Link href="/how-it-works">

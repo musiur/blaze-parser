@@ -33,7 +33,6 @@ export async function A_LoginUser(email: string, password: string) {
             role: user.role,
             resumeData: user.resumeData
         };
-        console.log(userdata)
         cookies().set("token", token);
         cookies().set("user", JSON.stringify({ ...userdata, resumeData: user?.resumeData?.slice(0, 100) || "" }));
 

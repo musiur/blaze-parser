@@ -139,7 +139,7 @@ export const PostApplication = async (data: any) => {
         if (!userdata) {
             return {
                 success: false,
-                message: "No user found",
+                message: "No user found!",
             }
         }
 
@@ -149,35 +149,40 @@ export const PostApplication = async (data: any) => {
         if (!userdataFromDb?.data?.resumeData) {
             return {
                 success: false,
-                message: "No resume data found",
+                message: "No resume data found! Upload your resume from __settings__ tab in dashboard.",
             }
         }
         const openingResult = await GetOpening(data.openingId);
+        const formatedOpeningResult = JSON.parse(JSON.stringify(openingResult))
 
         if (!openingResult?.data?.description) {
             return {
                 success: false,
-                message: "No opening found",
+                message: "No opening found!",
             }
         }
+        console.log(formatedOpeningResult)
 
         // get applications
-        const previousApplications = await Application.findOne({ applicantId: userdata._id, recruiterId: openingResult?.data?.recruiter })
-        console.log(previousApplications, "<--<")
+        let previousApplications = await Application.findOne({ openingId: openingResult?.data?._id });
+        const formatedApplications = JSON.parse(JSON.stringify(previousApplications));
 
-        if (previousApplications) {
+        if (formatedApplications?.applicantId === userdata?._id) {
             return {
                 success: false,
-                message: "Already applied",
+                message: "Already applied!",
             }
         }
 
+
+
         // get recruiter details
-        const recruiterDetails = await User.findOne({ _id: openingResult?.data?.recruiter });
-        if (!recruiterDetails) {
+        const recruiterDetails = await User.findById(openingResult?.data?.recruiter);
+        const formatedRecruiterDetails = JSON.parse(JSON.stringify(recruiterDetails));
+        if (!formatedRecruiterDetails) {
             return {
                 success: false,
-                message: "Recruiter not foundd",
+                message: "Recruiter not found!",
             }
         }
 
@@ -193,15 +198,15 @@ export const PostApplication = async (data: any) => {
         data.recruiterId = openingResult?.data?.recruiter;
         data.title = openingResult?.data?.title;
         data.applicant = userdata?.name;
-        data.recruiter = recruiterDetails.name;
+        data.recruiter = formatedRecruiterDetails.name;
         data.location = openingResult?.data?.location;
         data.jobType = openingResult?.data?.jobType;
         data.status = "pending";
         data.appliedAt = new Date();
 
-        // console.log(data)
+
         const response = await Application.create(data);
-        // console.log(response, "<<")
+
 
         if (!response) {
             return {
@@ -217,7 +222,6 @@ export const PostApplication = async (data: any) => {
         }
 
     } catch (error) {
-        console.log(error)
         return {
             success: false,
             message: "Something went wrong",

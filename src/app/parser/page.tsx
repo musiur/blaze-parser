@@ -17,23 +17,19 @@ const Page = () => {
   const parser = () => {
     if (data) {
       const text = NLP(data);
-      const tokenized = text.sentences().terms().out("array");
+      // const tokenized = text.sentences().terms().out("array");
       // const stemmed = text.stemmer();
       const POS = text.out("tags");
       setParseData(POS);
     }
     // const natural = require('natural');
-
-    // console.log(natural.PorterStemmer.tokenizeAndStem(data));
+    // const stemedData = natural.PorterStemmer.tokenizeAndStem(data);
   };
-
-  console.log(parseData);
 
   return (
     <div className="container section">
       <div>{data}</div>
-      {/* <div>{parseData?.toString()}</div> */}
-      <Button onClick={parser}> Parse</Button>
+      <Button onClick={parser}>Parse</Button>
     </div>
   );
 };

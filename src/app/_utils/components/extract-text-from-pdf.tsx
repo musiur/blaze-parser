@@ -40,7 +40,6 @@ export function TextExtractionFromPDF() {
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
     data.pdfFile = pdfFileText;
-    console.log(data, pdfFileText);
     if (!data.pdfFile) {
       form.setError(
         "pdfFile",
@@ -85,13 +84,11 @@ export function TextExtractionFromPDF() {
                         // getting file text extraction
                         pdfToText(file)
                           .then((text: any) => {
-                            console.log(text, "<--");
                             setPdfFileText(text);
                             // getting file name
                             setSelectdPdfFileName(file.name);
                           })
                           .catch((error: any) => {
-                            console.log(error);
                             console.error("Failed to extract text from pdf");
                           });
                       }

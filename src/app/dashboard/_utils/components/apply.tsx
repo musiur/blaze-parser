@@ -5,14 +5,16 @@ import clsx from "clsx";
 import { Sun } from "lucide-react";
 import { useState } from "react";
 import { PostApplication } from "../actions/applications/application.controller";
+import ResponseX from "@/components/molecules/response.x";
 
 const Apply = ({ _id }: { _id: string }) => {
   const [pending, setPending] = useState(false);
+  console.log(_id);
   const applyNow = async () => {
     setPending(true);
-    // setPending(false);
+
     const result = await PostApplication({ openingId: _id });
-    console.log(result);
+    ResponseX({ title: "Applying", result });
     setPending(false);
   };
   return (

@@ -18,7 +18,7 @@ const Page = async () => {
         : await GetOpenings();
     openings = result?.data || [];
   } catch (error) {
-    console.log(error);
+    // need to console here to see the error
   }
   return (
     <div className="space-y-8">
@@ -45,6 +45,7 @@ const Page = async () => {
             {openings.length ? (
               openings.map((opening) => {
                 const { _id, title, salary, location } = opening;
+                console.log(_id);
                 return (
                   <tr key={_id} className="border-b border-r">
                     <td className="border-l">{title}</td>
@@ -54,6 +55,7 @@ const Page = async () => {
                       data={opening}
                       path="/dashboard/openings"
                       role={userdata?.role || ""}
+                      tableType="openings"
                     />
                   </tr>
                 );

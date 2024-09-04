@@ -11,7 +11,6 @@ const DeleteAction = ({ action, _id }: { action: Function; _id: string }) => {
   const delAction = async () => {
     setPending(true);
     const result = await action(_id);
-    console.log(result);
     setPending(false);
     ResponseX({ title: "Deletion", result });
   };

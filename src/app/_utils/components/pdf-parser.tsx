@@ -27,7 +27,7 @@ const FormSchema = z.object({
   pdfFile: z.string().min(10),
 });
 
-export function PdfParser() {
+export function PdfParser({ reupload = false }: { reupload?: boolean }) {
   const [pdfFileText, setPdfFileText] = useState("");
   const [selectdPdfFileName, setSelectdPdfFileName] =
     useState("No file selected");
@@ -44,7 +44,6 @@ export function PdfParser() {
 
     try {
       const result = await UploadResumeAction(pdfFileText);
-      console.log({ result });
       if (result.success) {
         window.location.reload();
       }
@@ -96,7 +95,6 @@ export function PdfParser() {
                             setSelectdPdfFileName(file.name);
                           })
                           .catch((error: any) => {
-                            console.log(error);
                             console.error("Failed to extract text from pdf");
                           });
                       }
@@ -115,7 +113,13 @@ export function PdfParser() {
               ) : (
                 <Upload className="w-4 h-4" />
               )}
-              {form.formState.isSubmitting ? "Uploading" : "Upload"}
+              {form.formState.isSubmitting
+                ? reupload
+                  ? "Reuploading"
+                  : "Uploading"
+                : reupload
+                ? "Reupload"
+                : "Upload"}
             </Button>
           </div>
         </form>
