@@ -14,19 +14,20 @@ export default function Navbar() {
     },
     {
       id: 2,
-      text: "About us",
+      text: "About",
       link: "/about-us",
     },
     {
       id: 3,
-      text: "Contact us",
+      text: "Contact",
       link: "/contact-us",
     },
   ];
   return (
     <NavbarVisibility>
-      <nav className="bg-white shadow-sm dark:bg-gray-950">
-        <div className="container flex items-center justify-between h-16 ">
+      <header className="sticky top-4 px-4">
+      <nav className="bg-white/50 backdrop-blur-lg sticky top-4 max-w-xl rounded-2xl mx-auto border px-4">
+        <div className="flex items-center justify-between h-16 ">
           <Link
             className="flex items-center text-lg font-semibold space-x-2"
             href="/"
@@ -34,14 +35,14 @@ export default function Navbar() {
             <MountainIcon className="h-6 w-6" />
             <span className="font-bold">BlazeParser</span>
           </Link>
-          <nav className="hidden items-center text-sm font-medium md:flex">
+          <nav className="hidden items-center text-sm font-medium md:flex gap-4">
             {NavLinkItems.map(
               (item: { id: number; text: string; link: string }) => {
                 const { id, text, link } = item;
                 return (
                   <Link
                     key={id}
-                    className="relative inline-block rounded-none bg-transparent text-gray-900 before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-gradient-to-b   before:transition-all before:duration-300 hover:before:w-full hover:bg-gradient-to-b from-white to-gray-100 hover:text-gray-900 dark:text-gray-50 dark:before:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-50 p-4"
+                    className="text-xs hover:text-primary"
                     href={link}
                   >
                     {text}
@@ -87,6 +88,7 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+      </header>
     </NavbarVisibility>
   );
 }
