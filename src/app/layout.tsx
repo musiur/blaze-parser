@@ -30,7 +30,7 @@ export default function RootLayout({
         )}
       >
         <Navbar />
-        {children}
+        <main className="min-h-[85dvh]">{children}</main>
         <Footer />
         <Toaster />
       </body>

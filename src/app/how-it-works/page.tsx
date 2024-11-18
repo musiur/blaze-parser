@@ -2,7 +2,7 @@ import { TextExtractionFromPDF } from "../_utils/components/extract-text-from-pd
 
 const GetStarted = () => {
   return (
-    <div className="container section space-y-10">
+    <div className="container section hero-gap space-y-10">
       <div className="space-y-2">
         <h1 className="text-2xl sm:text-3xl font-bold">Raw Data Extraction</h1>
         <p>

@@ -15,12 +15,11 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
 
-    // --primary: #C1FF3F;
-    --primary: 79, 100%, 62%;
-    /* Navy Blue */
-    --primary-foreground: 0 0% 98%;
 
-    --secondary: 240 4.8% 95.9%;
+    --primary: 142, 72%, 29%;
+    --primary-foreground: 0 0% 98%;
+    // --secondary: #C1FF3F;
+    --secondary: 79, 100%, 62%;
     --secondary-foreground: 240 5.9% 10%;
 
     --muted: 240 4.8% 95.9%;
@@ -75,7 +74,7 @@
 
 @layer base {
   * {
-    @apply p-0 m-0 min-w-0 box-border;
+    @apply p-0 m-0 min-w-0 box-border text-[16px];
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -91,11 +90,46 @@
 }
 
 .section {
-  @apply py-[48px] md:py-[72px];
+  @apply py-[72px] md:py-[96px];
 }
 
 .hero-gap {
-  @apply pt-[96px];
+  @apply pt-[128px];
+}
+
+
+.heading-one {
+  @apply text-5xl sm:text-6xl font-bold max-w-xl;
+}
+
+
+@keyframes shine {
+  0% {
+    background-position: -100%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+
+@keyframes gradient-direction {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-direction {
+  animation: gradient-direction 5s ease infinite;
+}
+
+h2 {
+  @apply text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter;
 }
 
 th,

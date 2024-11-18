@@ -5,6 +5,8 @@ import { MenuIcon, MountainIcon } from "lucide-react";
 import NavbarVisibility from "./navbar-visibility";
 import AvatarToggler from "./avatar-toggler";
 import BrandLogo from "../molecules/brand-logo";
+import NavLink from "./navlink";
+import { ShinyButton } from "../molecules/shiny-button";
 
 export default function Navbar() {
   const NavLinkItems = [
@@ -27,7 +29,7 @@ export default function Navbar() {
   return (
     <NavbarVisibility>
       <header className="fixed top-4 px-4 w-full z-50">
-        <nav className="bg-white/80 backdrop-blur-lg rounded-2xl px-4 max-w-2xl mx-auto shadow-lg">
+        <nav className="bg-white/80 backdrop-blur-lg rounded-2xl px-4 max-w-3xl mx-auto shadow-lg">
           <div className="flex items-center justify-between h-16 ">
             <BrandLogo />
             <nav className="hidden items-center font-medium md:flex gap-4 ">
@@ -35,25 +37,16 @@ export default function Navbar() {
                 (item: { id: number; text: string; link: string }) => {
                   const { id, text, link } = item;
                   return (
-                    <Link
-                      key={id}
-                      className="text-xs hover:text-green-900"
-                      href={link}
-                    >
-                      {text}
-                    </Link>
+                    <NavLink key={id} data={{ id, name: text, href: link }} />
                   );
                 }
               )}
             </nav>
             <div className="flex items-center space-x-2">
               <Link href="/auth/login">
-                <Button className="hidden sm:inline-flex" variant="outline">
-                  Sign In
-                </Button>
-              </Link>
-              <Link href="/auth/register">
-                <Button className="hidden sm:inline-flex">Sign Up</Button>
+                <ShinyButton className="hidden sm:inline-flex">
+                  Get Started
+                </ShinyButton>
               </Link>
               <Sheet>
                 <SheetTrigger asChild>
@@ -68,11 +61,7 @@ export default function Navbar() {
                       (item: { id: number; text: string; link: string }) => {
                         const { id, text, link } = item;
                         return (
-                          <Link
-                            key={id}
-                            className=""
-                            href={link}
-                          >
+                          <Link key={id} className="" href={link}>
                             {text}
                           </Link>
                         );
