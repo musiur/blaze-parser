@@ -19,7 +19,7 @@ const Page = async () => {
   } catch (error) {
     // need to console to see error
   }
-  console.log(openings);
+
   return (
     <div className="space-y-8">
       <div className="flex justify-between">

@@ -161,7 +161,7 @@ export const PostApplication = async (data: any) => {
                 message: "No opening found!",
             }
         }
-        console.log(formatedOpeningResult)
+
 
         // get applications
         let previousApplications = await Application.findOne({ openingId: openingResult?.data?._id });

@@ -9,7 +9,11 @@ const Home___Hero = () => {
     <section className="bg-gradient-to-t from-white via-white to-secondary section hero-gap relative overflow-hidden">
       <BG___HomeHero className="absolute top-0 left-0 w-auto min-[1380px]:w-full h-full min-[1380px]:h-auto object-contain object-bottom" />
       <div className="container py-16 flex flex-col gap-8 items-center justify-center">
-        <div className="flex flex-col items-center justify-center gap-4 font-semibold">
+        <Anim___FadeUp
+          delay={0.2}
+          key={1}
+          className="flex flex-col items-center justify-center gap-4 font-semibold"
+        >
           <p className="text-primary text-center text-sm">
             Emerging tools for the future
           </p>
@@ -23,7 +27,7 @@ const Home___Hero = () => {
             RESUME PARSING
           </HeadingOne>
           <HeadingOne delay={1}>Tool</HeadingOne>
-        </div>
+        </Anim___FadeUp>
         <Anim___FadeUp key={1} delay={1} className="text-center max-w-2xl">
           <span className="font-semibold">
             Parse resumes and predict the best fit candidates offering salary

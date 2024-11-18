@@ -33,7 +33,7 @@ const Assets___PredictionModal = ({ className }: { className?: string }) => {
         d="M17 23C17 24.1867 17.3519 25.3467 18.0112 26.3334C18.6705 27.3201 19.6075 28.0891 20.7039 28.5433C21.8003 28.9974 23.0067 29.1162 24.1705 28.8847C25.3344 28.6532 26.4035 28.0818 27.2426 27.2426C28.0818 26.4035 28.6532 25.3344 28.8847 24.1705C29.1162 23.0067 28.9974 21.8003 28.5433 20.7039C28.0891 19.6075 27.3201 18.6705 26.3334 18.0112C25.3467 17.3519 24.1867 17 23 17C21.3226 17.0063 19.7126 17.6608 18.5067 18.8267L17 20.3333M17 20.3333V17M17 20.3333H20.3333M23 19.6667V23L25.6667 24.3333"
         stroke="black"
         strokeLinecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
         fill="none"
       />
       <path
@@ -65,7 +65,7 @@ const Assets___PredictionModal = ({ className }: { className?: string }) => {
       <path
         d="M164.182 260V266.182M164.182 272.364V266.182M164.182 266.182H158M164.182 266.182H169.273H170H164.182Z"
         stroke="#9E9E9E"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <circle cx="34" cy="55" r="18" fill="url(#paint0_linear_2208_14380)" />
       <path

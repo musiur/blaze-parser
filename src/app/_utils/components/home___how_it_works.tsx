@@ -14,24 +14,6 @@ import clsx from "clsx";
 import Anim___FadeUp from "@/components/anims/anim___fadeup";
 
 const Home___HowItWorks = () => {
-  const parsingSteps = [
-    {
-      icon: <File />,
-      title: "Upload your resume/CV",
-      description: "Start the parsing process to analyze your document.",
-    },
-    {
-      icon: <Settings />,
-      title: "Customize your settings",
-      description:
-        "Adjust the parsing process to extract relevant information.",
-    },
-    {
-      icon: <List />,
-      title: "Review the parsed data",
-      description: "Verify the accuracy of the parsed data.",
-    },
-  ];
   const twoSidesData = [
     {
       id: 1,
@@ -116,7 +98,7 @@ const Home___HowItWorks = () => {
                   {list.map((listItem, index) => {
                     const { icon, title, description } = listItem;
                     return (
-                      <div key={index} className="flex gap-4 w-full">
+                      <Anim___FadeUp delay={0.2 * index} key={index} className="flex gap-4 w-full">
                         <div className="min-h-12 min-w-12 w-12 h-12 rounded-full text-white bg-gradient-to-tr from-secondary to-primary flex items-center justify-center">
                           {icon}
                         </div>
@@ -124,18 +106,20 @@ const Home___HowItWorks = () => {
                           <h3 className="font-semibold">{title}</h3>
                           <p>{description}</p>
                         </div>
-                      </div>
+                      </Anim___FadeUp>
                     );
                   })}
                 </div>
-                <div
+                <Anim___FadeUp
+                  delay={0.2 * id}
+                  key={id}
                   className={clsx("flex-1 flex", {
                     "justify-start": id === 1,
                     "justify-end": id === 2,
                   })}
                 >
                   {modal}
-                </div>
+                </Anim___FadeUp>
               </div>
             );
           })}

@@ -45,7 +45,7 @@ const Page = async () => {
             {openings.length ? (
               openings.map((opening) => {
                 const { _id, title, salary, location } = opening;
-                console.log(_id);
+
                 return (
                   <tr key={_id} className="border-b border-r">
                     <td className="border-l">{title}</td>

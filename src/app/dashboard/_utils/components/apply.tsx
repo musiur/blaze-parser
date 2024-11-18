@@ -9,7 +9,7 @@ import ResponseX from "@/components/molecules/response.x";
 
 const Apply = ({ _id }: { _id: string }) => {
   const [pending, setPending] = useState(false);
-  console.log(_id);
+
   const applyNow = async () => {
     setPending(true);
 
