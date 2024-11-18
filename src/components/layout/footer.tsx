@@ -11,195 +11,27 @@ const Footer = () => {
   return (
     <FooterVisibility>
       <>
-        <footer className="w-full bg-white border-t py-12 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
-            <div className="space-y-4">
-              <BrandLogo />
-              <div className="text-sm leading-relaxed">
-                123 Main St, Anytown USA
-                <br />
-                Phone: (123) 456-7890
-                <br />
-                Email: info@acme.com
-              </div>
-              <div className="flex items-center space-x-2">
-                <Link className="hover:text-gray-900" href="#">
-                  <TwitterIcon className="h-5 w-5" />
-                </Link>
-                <Link className="hover:text-gray-900" href="#">
-                  <FacebookIcon className="h-5 w-5" />
-                </Link>
-                <Link className="hover:text-gray-900" href="#">
-                  <InstagramIcon className="h-5 w-5" />
-                </Link>
-                <Link className="hover:text-gray-900" href="#">
-                  <LinkedinIcon className="h-5 w-5" />
-                </Link>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <h4 className="text-gray-900 font-semibold text-lg">Products</h4>
-              <nav className="space-y-2">
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Widget A
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Widget B
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Widget C
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Widget D
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Widget E
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Widget F
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Widget G
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Widget H
-                </Link>
-              </nav>
-            </div>
-            <div className="space-y-4">
-              <h4 className="text-gray-900 font-semibold text-lg">Resources</h4>
-              <nav className="space-y-2">
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Documentation
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Tutorials
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Support
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Blog
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Webinars
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Case Studies
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  FAQ
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Guides
-                </Link>
-              </nav>
-            </div>
-            <div className="space-y-4">
-              <h4 className="text-gray-900 font-semibold text-lg">Company</h4>
-              <nav className="space-y-2">
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  About
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Careers
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Contact
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Privacy
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Terms of Service
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Press
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Events
-                </Link>
-                <Link
-                  className="hover:text-gray-900 text-sm flex flex-col"
-                  href="#"
-                >
-                  Partners
-                </Link>
-              </nav>
+        <footer className="container mx-auto bg-white border-t py-12 md:py-16 lg:py-20">
+          <div className="px-4 md:px-6 flex flex-col items-center gap-8 md:gap-12">
+            <BrandLogo />
+            <div className="flex items-center space-x-2">
+              <Link className="text-gray-500 hover:text-gray-700" href="#">
+                <TwitterIcon className="h-5 w-5 stroke-[1.5px]" />
+              </Link>
+              <Link className="text-gray-500 hover:text-gray-700" href="#">
+                <FacebookIcon className="h-5 w-5 stroke-[1.5px]" />
+              </Link>
+              <Link className="text-gray-500 hover:text-gray-700" href="#">
+                <InstagramIcon className="h-5 w-5 stroke-[1.5px]" />
+              </Link>
+              <Link className="text-gray-500 hover:text-gray-700" href="#">
+                <LinkedinIcon className="h-5 w-5 stroke-[1.5px]" />
+              </Link>
             </div>
           </div>
         </footer>
         <div className="w-full bg-gray-100 text-gray-600 py-4 text-center text-sm">
-          © 2024 Acme Inc. All rights reserved.
+          All rights reserved @{new Date().getFullYear()}
         </div>
       </>
     </FooterVisibility>

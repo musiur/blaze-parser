@@ -36,11 +36,11 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="container section flex items-center justify-center">
+    <div className="container section hero-gap flex items-center justify-center">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="max-w-[320px] min-w-[280px] w-[460px] space-y-6 p-4 md:p-6 border shadow-xl rounded-lg"
+          className="max-w-[560px] min-w-[280px] w-[500px] space-y-6 p-4 md:p-6"
         >
           <div className="space-y-2">
             <h3 className="text-xl md:text-2xl font-bold">Login</h3>

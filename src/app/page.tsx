@@ -7,9 +7,9 @@ import FeatureSection from "./_utils/components/feature.section";
 const Home = () => {
   return (
     <>
-      <section className="container section flex flex-col md:flex-row items-center justify-between gap-10">
-        <div className="md:w-1/2 space-y-8">
-          <h1 className="text-4xl md:text-6xl font-bold mb-3">
+      <section className="bg-green-900 section [&>*]:text-center">
+        <div className="section space-y-8 max-w-xl mx-auto px-4 md:px-0 flex flex-col items-center justify-center">
+          <h1 className="text-4xl md:text-6xl font-bold mb-3 text-white">
             The&nbsp;Ultimate
             <br />
             <span className="text-4xl md:text-6xl font-bold text-primary">
@@ -17,7 +17,7 @@ const Home = () => {
             </span>
             &nbsp;Tool
           </h1>
-          <p className="text-lg md:text-xl mb-3">
+          <p className="text-lg md:text-xl mb-3 text-white">
             Parse resumes effortlessly with our cutting-edge technology.
             Simplify your hiring process and save time with our powerful parsing
             tool.
@@ -35,15 +35,6 @@ const Home = () => {
               </Button>
             </Link>
           </div>
-        </div>
-        <div className="md:w-1/2 mt-5 md:mt-0">
-          <Image
-            src="/image.png"
-            alt="Resume Parser"
-            width={1000}
-            height={1000}
-            className="w-full h-auto my-auto"
-          />
         </div>
       </section>
       <FeatureSection />

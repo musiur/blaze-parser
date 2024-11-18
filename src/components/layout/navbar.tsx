@@ -4,6 +4,7 @@ import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
 import { MenuIcon, MountainIcon } from "lucide-react";
 import NavbarVisibility from "./navbar-visibility";
 import AvatarToggler from "./avatar-toggler";
+import BrandLogo from "../molecules/brand-logo";
 
 export default function Navbar() {
   const NavLinkItems = [
@@ -25,69 +26,67 @@ export default function Navbar() {
   ];
   return (
     <NavbarVisibility>
-      <header className="sticky top-4 px-4">
-      <nav className="bg-white/50 backdrop-blur-lg sticky top-4 max-w-xl rounded-2xl mx-auto border px-4">
-        <div className="flex items-center justify-between h-16 ">
-          <Link
-            className="flex items-center text-lg font-semibold space-x-2"
-            href="/"
-          >
-            <MountainIcon className="h-6 w-6" />
-            <span className="font-bold">BlazeParser</span>
-          </Link>
-          <nav className="hidden items-center text-sm font-medium md:flex gap-4">
-            {NavLinkItems.map(
-              (item: { id: number; text: string; link: string }) => {
-                const { id, text, link } = item;
-                return (
-                  <Link
-                    key={id}
-                    className="text-xs hover:text-primary"
-                    href={link}
-                  >
-                    {text}
-                  </Link>
-                );
-              }
-            )}
-          </nav>
-          <div className="flex items-center space-x-2">
-            <Link href="/auth/login"><Button className="hidden sm:inline-flex" variant="outline">
-              Sign In
-            </Button></Link>
-            <Link href="/auth/register"><Button className="hidden sm:inline-flex">Sign Up</Button></Link>
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button className="sm:hidden" size="icon" variant="ghost">
-                  <MenuIcon className="h-6 w-6" />
-                  <span className="sr-only">Toggle navigation menu</span>
+      <header className="fixed top-4 px-4 w-full z-50">
+        <nav className="bg-white/80 backdrop-blur-lg rounded-2xl px-4 max-w-2xl mx-auto shadow-lg">
+          <div className="flex items-center justify-between h-16 ">
+            <BrandLogo />
+            <nav className="hidden items-center font-medium md:flex gap-4 ">
+              {NavLinkItems.map(
+                (item: { id: number; text: string; link: string }) => {
+                  const { id, text, link } = item;
+                  return (
+                    <Link
+                      key={id}
+                      className="text-xs hover:text-green-900"
+                      href={link}
+                    >
+                      {text}
+                    </Link>
+                  );
+                }
+              )}
+            </nav>
+            <div className="flex items-center space-x-2">
+              <Link href="/auth/login">
+                <Button className="hidden sm:inline-flex" variant="outline">
+                  Sign In
                 </Button>
-              </SheetTrigger>
-              <SheetContent side="right">
-                <div className="grid gap-4 p-4">
-                  {NavLinkItems.map(
-                    (item: { id: number; text: string; link: string }) => {
-                      const { id, text, link } = item;
-                      return (
-                        <Link
-                          key={id}
-                          className="relative inline-block rounded-none bg-transparent text-gray-900 before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-gradient-to-b   before:transition-all before:duration-300 hover:before:w-full hover:bg-gradient-to-b from-white to-gray-100 hover:text-gray-900 dark:text-gray-50 dark:before:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-50 p-4"
-                          href={link}
-                        >
-                          {text}
-                        </Link>
-                      );
-                    }
-                  )}
-                  <div className="flex flex-col space-y-2">
-                    <AvatarToggler />
+              </Link>
+              <Link href="/auth/register">
+                <Button className="hidden sm:inline-flex">Sign Up</Button>
+              </Link>
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button className="sm:hidden" size="icon" variant="ghost">
+                    <MenuIcon className="h-6 w-6" />
+                    <span className="sr-only">Toggle navigation menu</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right">
+                  <div className="grid gap-4 p-4">
+                    {NavLinkItems.map(
+                      (item: { id: number; text: string; link: string }) => {
+                        const { id, text, link } = item;
+                        return (
+                          <Link
+                            key={id}
+                            className=""
+                            href={link}
+                          >
+                            {text}
+                          </Link>
+                        );
+                      }
+                    )}
+                    <div className="flex flex-col space-y-2">
+                      <AvatarToggler />
+                    </div>
                   </div>
-                </div>
-              </SheetContent>
-            </Sheet>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
       </header>
     </NavbarVisibility>
   );
