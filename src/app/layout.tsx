@@ -13,7 +13,11 @@ const fontSans = FontSans({
 
 export const metadata: Metadata = {
   title: "Blaze Parser",
-  description: "Blaze Parser is a resume/CV parser that predicts salary expectations",
+  description:
+    "Blaze Parser is a resume/CV parser that predicts salary expectations",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
