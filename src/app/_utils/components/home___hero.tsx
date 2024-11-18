@@ -37,10 +37,10 @@ const Home___Hero = () => {
           save time with our powerful parsing tool.
         </Anim___FadeUp>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full sm:w-auto">
-          <Link href="/how-it-works">
+          <Link href="/dashboard/settings">
             <ShinyButton className="w-full sm:w-auto">Get Started</ShinyButton>
           </Link>
-          <Link href="/contact">
+          <Link href="/contact-us">
             <ShinyButton
               variant="outline"
               delay={0.5}

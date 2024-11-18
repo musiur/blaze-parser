@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
-import { MenuIcon, MountainIcon } from "lucide-react";
+import { MenuIcon } from "lucide-react";
 import NavbarVisibility from "./navbar-visibility";
 import AvatarToggler from "./avatar-toggler";
 import BrandLogo from "../molecules/brand-logo";

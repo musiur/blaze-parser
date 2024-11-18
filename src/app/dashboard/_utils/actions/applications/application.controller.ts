@@ -153,7 +153,7 @@ export const PostApplication = async (data: any) => {
             }
         }
         const openingResult = await GetOpening(data.openingId);
-        const formatedOpeningResult = JSON.parse(JSON.stringify(openingResult))
+        // const formatedOpeningResult = JSON.parse(JSON.stringify(openingResult))
 
         if (!openingResult?.data?.description) {
             return {
