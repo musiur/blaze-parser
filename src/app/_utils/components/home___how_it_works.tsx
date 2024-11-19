@@ -67,7 +67,7 @@ const Home___HowItWorks = () => {
     <section className="section bg-gradient-to-br from-primary to-secondary animate-gradient-direction">
       <div className="container bg-white/90 backdrop-blur-sm rounded-[32px] md:rounded-[64px] px-6 md:px-16 section space-y-12">
         <Anim___FadeUp delay={0.2} key={1} className="space-y-4">
-          <h2 className="text-center ">
+          <h2 className="text-center">
             The way we parse and <br /> predict salary expectations
           </h2>
           <p className="text-center max-w-lg mx-auto">
