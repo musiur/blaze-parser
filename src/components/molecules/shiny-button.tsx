@@ -8,7 +8,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const shinyButtonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 relative backdrop-blur-xl transition-shadow duration-300 ease-in-out",
+  "inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 relative backdrop-blur-xl transition-shadow duration-300 ease-in-out",
   {
     variants: {
       variant: {
@@ -25,7 +25,7 @@ const shinyButtonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-9 px-4 py-2",
+        default: "h-12 px-6 py-2 rounded-xl",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
@@ -88,7 +88,7 @@ const ShinyButton = React.forwardRef<HTMLButtonElement, ShinyButtonProps>(
         {...props}
       >
         <span
-          className="relative block size-full text-sm tracking-wide"
+          className="relative size-full tracking-wide inline-flex items-center justify-center"
           style={{
             maskImage:
               "linear-gradient(-75deg,hsl(var(--primary)) calc(var(--x) + 20%),transparent calc(var(--x) + 30%),hsl(var(--primary)) calc(var(--x) + 100%))",

@@ -133,7 +133,7 @@
 
 h2,
 h2~span {
-  @apply text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter;
+  @apply text-2xl sm:text-4xl md:text-3xl font-semibold tracking-tighter;
 }
 
 th,
@@ -143,6 +143,16 @@ td {
 
 button {
   @apply items-center gap-2 leading-none;
+}
+
+::-moz-selection { /* Code for Firefox */
+  color: green;
+  background: greenyellow;
+}
+
+::selection {
+  color: green;
+  background: greenyellow;
 }
 
 // fonts poppins

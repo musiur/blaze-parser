@@ -3,6 +3,8 @@ import BG___HomeHero from "./bg-homehero";
 import HeadingOne from "@/components/typography/heading___one";
 import Anim___FadeUp from "@/components/anims/anim___fadeup";
 import { ShinyButton } from "@/components/molecules/shiny-button";
+import AnimatedShinyText from "@/components/ui/animated-shiny-text";
+import { ArrowRightIcon } from "lucide-react";
 
 const Home___Hero = () => {
   return (
@@ -14,9 +16,10 @@ const Home___Hero = () => {
           key={1}
           className="flex flex-col items-center justify-center gap-4 font-semibold"
         >
-          <p className="text-primary text-center text-sm">
-            Emerging tools for the future
-          </p>
+          <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
+            <span>✨ Introducing Blaze Parser</span>
+            <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+          </AnimatedShinyText>
           <HeadingOne>Your Ultimate</HeadingOne>
           <HeadingOne
             className="text-primary"
@@ -36,7 +39,7 @@ const Home___Hero = () => {
           with our cutting-edge technology. Simplify your hiring process and
           save time with our powerful parsing tool.
         </Anim___FadeUp>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full sm:w-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full sm:w-auto">
           <Link href="/dashboard/settings">
             <ShinyButton className="w-full sm:w-auto">Get Started</ShinyButton>
           </Link>

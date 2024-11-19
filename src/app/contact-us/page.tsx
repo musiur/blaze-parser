@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 
 export default function Component() {
   return (
-    <section className="w-full section hero-gap">
-      <div className="container px-4 md:px-6">
+    <section className="w-full hero-gap bg-gradient-to-t from-white via-white to-secondary">
+      <div className="container section px-4 md:px-6">
         <div className="mx-auto max-w-xl space-y-4 text-center">
           <h1 className="text-xl font-semibold tracking-tighter">
             Get in Touch

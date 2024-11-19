@@ -29,8 +29,8 @@ export default function Navbar() {
   return (
     <NavbarVisibility>
       <header className="fixed top-4 px-4 w-full z-50">
-        <nav className="bg-white/80 backdrop-blur-lg rounded-2xl px-4 max-w-3xl mx-auto shadow-lg">
-          <div className="flex items-center justify-between h-16 ">
+        <nav className="bg-white/80 backdrop-blur-lg rounded-[24px] px-4 py-2 max-w-3xl mx-auto shadow-lg">
+          <div className="flex items-center justify-between h-16">
             <BrandLogo />
             <nav className="hidden items-center font-medium md:flex gap-4 ">
               {NavLinkItems.map(
@@ -43,14 +43,12 @@ export default function Navbar() {
               )}
             </nav>
             <div className="flex items-center space-x-2">
-              <Link href="/auth/login">
-                <ShinyButton className="hidden sm:inline-flex">
-                  Get Started
-                </ShinyButton>
-              </Link>
+              <div className="hidden md:inline-flex">
+              <AvatarToggler />
+              </div>
               <Sheet>
                 <SheetTrigger asChild>
-                  <Button className="sm:hidden" size="icon" variant="ghost">
+                  <Button className="md:hidden" size="icon" variant="ghost">
                     <MenuIcon className="h-6 w-6" />
                     <span className="sr-only">Toggle navigation menu</span>
                   </Button>
@@ -67,6 +65,7 @@ export default function Navbar() {
                         );
                       }
                     )}
+
                     <div className="flex flex-col space-y-2">
                       <AvatarToggler />
                     </div>

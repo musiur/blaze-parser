@@ -44,9 +44,7 @@ export default function LoginForm() {
         >
           <div className="space-y-2">
             <h3 className="text-xl md:text-2xl font-bold">Login</h3>
-            <p className="text-gray-400">
-              Enter your email and password to access your account.
-            </p>
+            <p>Enter your email and password to access your account.</p>
           </div>
           <InputX
             form={form}

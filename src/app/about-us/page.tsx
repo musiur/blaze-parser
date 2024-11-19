@@ -6,7 +6,8 @@ export default function AboutUs() {
       id: 1,
       name: "Musiur Alam Opu",
       designation: "Tech Lead",
-      image: "https://utfs.io/f/Tqz4CHeTuQcdtLdXXRzTNaiov94M81jt0G2dFSgHkpn7UEwP",
+      image:
+        "https://utfs.io/f/Tqz4CHeTuQcdtLdXXRzTNaiov94M81jt0G2dFSgHkpn7UEwP",
     },
     {
       id: 2,
@@ -28,21 +29,21 @@ export default function AboutUs() {
     },
   ];
   return (
-    <div className="w-full min-h-screen section hero-gap bg-white dark:bg-gray-900">
+    <div className="w-full min-h-screen section hero-gap bg-gradient-to-t from-white via-white to-secondary">
       <div className="relative z-10 container mx-auto px-4 py-12 md:py-20 lg:py-24">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          <div>
-            <h1 className="text-xl md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <div className="space-y-4">
+            <h1 className="text-xl md:text-2xl font-bold tracking-tight">
               About
             </h1>
-            <p className="mt-4">
+            <p>
               Resume Parser is a powerful web application that helps you quickly
               and accurately extract key information from resumes. Our advanced
               natural language processing technology analyzes the content of
               resumes, identifying and structuring crucial details like work
               experience, education, skills, and more.
             </p>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+            <p>
               With Resume Parser, you can streamline your hiring process, save
               time, and make more informed decisions about potential candidates.
               Our user-friendly interface and customizable settings make it easy
@@ -56,7 +57,7 @@ export default function AboutUs() {
                 <div key={id}>
                   <Image
                     alt="Team Member 1"
-                    className="h-auto w-full rounded-lg object-cover"
+                    className="h-auto w-full rounded-3xl object-cover"
                     height={300}
                     src={image}
                     style={{
@@ -68,10 +69,10 @@ export default function AboutUs() {
                     quality={80}
                     blurDataURL={"https://github.com/shadcn.png"}
                   />
-                  <h3 className="mt-4 text-xl font-semibold text-gray-900 dark:text-white">
+                  <h3 className="mt-4 font-semibold">
                     {name}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <p>
                     {designation}
                   </p>
                 </div>
