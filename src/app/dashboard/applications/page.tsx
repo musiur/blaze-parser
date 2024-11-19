@@ -4,6 +4,8 @@ import {
   GetApplicationsApplicant,
   GetApplicationsRecruiters,
 } from "../_utils/actions/applications/application.controller";
+import { FileWarning } from "lucide-react";
+import NoFile from "@/components/molecules/nofile";
 
 const Page = async () => {
   let openings: any[] = [];
@@ -25,47 +27,50 @@ const Page = async () => {
       <div className="flex justify-between">
         <h2 className="text-lg md:text-xl font-semibold">Applications</h2>
       </div>
-
-      <div className="overflow-auto">
-        <table className="w-full">
-          <thead>
-            <tr className="bg-secondary text-primary">
-              <th>Role</th>
-              <th>Location</th>
-              <th>Type</th>
-              <th>Status</th>
-              <th>Similarity</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {openings.length ? (
-              openings.map((opening) => {
-                const { _id, title, jobType, location, status, similarity } =
-                  opening;
-                return (
-                  <tr key={_id} className="border-b border-r">
-                    <td className="border-l">{title}</td>
-                    <td className="border-l">{location}</td>
-                    <td className="border-x">{jobType}</td>
-                    <td className="border-x">{status}</td>
-                    <td className="border-x">{similarity}%</td>
-                    <TableAction
-                      data={opening}
-                      path="/dashboard/openings"
-                      role={userdata?.role || ""}
-                    />
-                  </tr>
-                );
-              })
-            ) : (
-              <tr className="text-center">
-                <td className="w-full text-center py-8f">No data found!</td>
+      {!openings?.length ? (
+        <NoFile />
+      ) : (
+        <div className="overflow-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="bg-primary text-white">
+                <th>Role</th>
+                <th>Location</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Similarity</th>
+                <th>Actions</th>
               </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {openings.length ? (
+                openings.map((opening) => {
+                  const { _id, title, jobType, location, status, similarity } =
+                    opening;
+                  return (
+                    <tr key={_id} className="border-b border-r">
+                      <td className="border-l">{title}</td>
+                      <td className="border-l">{location}</td>
+                      <td className="border-x">{jobType}</td>
+                      <td className="border-x">{status}</td>
+                      <td className="border-x">{similarity}%</td>
+                      <TableAction
+                        data={opening}
+                        path="/dashboard/openings"
+                        role={userdata?.role || ""}
+                      />
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr className="text-center">
+                  <td className="w-full text-center py-8f">No data found!</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

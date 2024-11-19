@@ -13,6 +13,7 @@ import { ChevronRight, Package2Icon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import SideNavLinks from "./sidenav-links";
+import BrandLogo from "@/components/molecules/brand-logo";
 
 const SideNav = () => {
   const [open, setOpen] = useState(false);
@@ -36,16 +37,13 @@ const SideNav = () => {
       >
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-[60px] items-center border-b px-6">
-            <Link className="flex items-center gap-2 font-semibold" href="/">
-              <Package2Icon className="h-6 w-6" />
-              <span className="">Applicant Tracking</span>
-            </Link>
+            <BrandLogo />
           </div>
           <div className="flex-1 overflow-auto py-2">
             <SideNavLinks />
           </div>
           <div className="mt-auto p-4">
-            <Card>
+            <Card className="border-border shadow-none">
               <CardHeader className="pb-4">
                 <CardTitle>Need Help?</CardTitle>
                 <CardDescription>
@@ -54,7 +52,7 @@ const SideNav = () => {
               </CardHeader>
               <CardContent>
                 <Link href="/contact-us">
-                  <Button className="w-full" size="sm">
+                  <Button className="w-full">
                     Contact Support
                   </Button>
                 </Link>

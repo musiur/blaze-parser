@@ -6,6 +6,8 @@ import {
   GetOpenings,
   GetOpeningsRecruiter,
 } from "../_utils/actions/openings/opening.controller";
+import { FileWarning } from "lucide-react";
+import NoFile from "@/components/molecules/nofile";
 
 const Page = async () => {
   let openings: any[] = [];
@@ -31,43 +33,43 @@ const Page = async () => {
         ) : null}
       </div>
 
-      <div className="overflow-auto">
-        <table className="w-full">
-          <thead>
-            <tr className="bg-secondary text-primary">
-              <th>Role</th>
-              <th>Location</th>
-              <th>Salary</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {openings.length ? (
-              openings.map((opening) => {
-                const { _id, title, salary, location } = opening;
-
-                return (
-                  <tr key={_id} className="border-b border-r">
-                    <td className="border-l">{title}</td>
-                    <td className="border-l">{location}</td>
-                    <td className="border-x">{salary}</td>
-                    <TableAction
-                      data={opening}
-                      path="/dashboard/openings"
-                      role={userdata?.role || ""}
-                      tableType="openings"
-                    />
-                  </tr>
-                );
-              })
-            ) : (
-              <tr className="text-center">
-                <td className="w-full text-center py-8f">No data found!</td>
+      {openings?.length ? (
+        <div className="overflow-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="bg-primary text-white">
+                <th>Role</th>
+                <th>Location</th>
+                <th>Salary</th>
+                <th>Actions</th>
               </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {openings.length
+                ? openings.map((opening) => {
+                    const { _id, title, salary, location } = opening;
+
+                    return (
+                      <tr key={_id} className="border-b border-r">
+                        <td className="border-l">{title}</td>
+                        <td className="border-l">{location}</td>
+                        <td className="border-x">{salary}</td>
+                        <TableAction
+                          data={opening}
+                          path="/dashboard/openings"
+                          role={userdata?.role || ""}
+                          tableType="openings"
+                        />
+                      </tr>
+                    );
+                  })
+                : null}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <NoFile />
+      )}
     </div>
   );
 };

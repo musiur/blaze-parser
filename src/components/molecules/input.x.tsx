@@ -79,7 +79,7 @@ const InputX = ({
           type={!showPass ? type : "text"}
         />
         <div
-          className="inline-flex w-8 h-8 items-center justify-center absolute top-[2px] right-2"
+          className="inline-flex w-8 h-8 items-center justify-center absolute top-[8px] right-2"
           role="button"
           onClick={() => setShowPass(!showPass)}
         >

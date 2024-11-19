@@ -19,7 +19,7 @@ const AvatarDropdown = ({ data }: { data: any }) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          className="rounded-full border border-gray-200 w-8 h-8 dark:border-gray-800"
+          className="rounded-full border border-gray-200 w-8 h-8 dark:border-gray-800 mr-2"
           size="icon"
           variant="ghost"
         >
@@ -32,12 +32,12 @@ const AvatarDropdown = ({ data }: { data: any }) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <Link href={`/dashboard/overview`}>
+        <Link href={`/dashboard`}>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
         </Link>
         <DropdownMenuSeparator />
-        <Link href={`/dashboard/profile`}>
-          <DropdownMenuItem>Profile</DropdownMenuItem>
+        <Link href={`/dashboard/`}>
+          <DropdownMenuItem>Overview</DropdownMenuItem>
         </Link>
         <Link href={`/dashboard/settings`}>
           <DropdownMenuItem>Settings</DropdownMenuItem>
