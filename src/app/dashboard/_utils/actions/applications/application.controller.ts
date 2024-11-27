@@ -8,6 +8,7 @@ import { calculateSimilarity } from "./consine-similarity";
 import { A_GetUser } from "@/app/auth/_utils/actions/user.controller";
 import { revalidatePath } from "next/cache";
 import User from "@/app/auth/_utils/actions/user.model";
+import { Opening } from "../openings/opening.model";
 
 export const GetApplications = async () => {
     try {
@@ -214,6 +215,18 @@ export const PostApplication = async (data: any) => {
                 message: "Could not apply",
             }
         }
+
+        // update applications array in opening
+        const updateOpening = await Opening.findOneAndUpdate({ _id: openingResult?.data?._id }, { $push: { applications: userdata._id } });
+
+        if (!updateOpening) {
+            await Application.deleteOne({ _id: response?._id });
+            return {
+                success: false,
+                message: "Could not apply",
+            } 
+        }
+
         revalidatePath("/dashboard/openings")
         return {
             success: true,
@@ -264,7 +277,7 @@ export const DeleteApplication = async (_id: string) => {
                 message: "No token found",
             }
         }
-        const response = await Application.findOneAndDelete({ _id });
+        const response = await Application.deleteOne({ _id });
         return {
             success: true,
             data: response,

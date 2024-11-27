@@ -37,7 +37,7 @@ const Page = async () => {
         <div className="grid grid-cols-1 gap-4 pb-16">
           {openings.length
             ? openings.map((opening) => {
-                const { _id, title, salary, location } = opening;
+                const { _id, title, salary, location, applications } = opening;
 
                 return (
                   <div key={_id} className="p-4 rounded-lg border-4 border-white shadow-lg hover:border-primary bg-gradient-to-tl hover:bg-gradient-to-br from-white via-white to-gray-200 hover:to-secondary hover:opacity-100 transition duration-300 ease-in-out">
@@ -52,6 +52,7 @@ const Page = async () => {
                         path="/dashboard/openings"
                         role={userdata?.role || ""}
                         tableType="openings"
+                        noApply={applications?.includes(userdata?._id) ? true : false}
                       />
                     </div>
                   </div>

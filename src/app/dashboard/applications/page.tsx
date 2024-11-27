@@ -4,12 +4,11 @@ import {
   GetApplicationsApplicant,
   GetApplicationsRecruiters,
 } from "../_utils/actions/applications/application.controller";
-import { FileWarning } from "lucide-react";
 import NoFile from "@/components/molecules/nofile";
 import { Badge } from "@/components/ui/badge";
 
 const Page = async () => {
-  let openings: any[] = [];
+  let applications: any[] = [];
   let userdata: any = null;
   try {
     userdata = JSON.parse(cookies().get("user")?.value || "");
@@ -17,7 +16,7 @@ const Page = async () => {
       userdata?.role === "recruiter"
         ? await GetApplicationsRecruiters()
         : await GetApplicationsApplicant();
-    openings =
+    applications =
       result?.data?.sort((a: any, b: any) => b.similarity - a.similarity) || [];
   } catch (error) {
     // need to console to see error
@@ -25,10 +24,7 @@ const Page = async () => {
 
   return (
     <div className="space-y-8">
-      <div className="flex justify-between">
-        <h2 className="text-lg md:text-xl font-semibold">Applications</h2>
-      </div>
-      {!openings?.length ? (
+      {!applications?.length ? (
         <NoFile />
       ) : (
         <div className="rounded-xl overflow-auto border">
@@ -44,10 +40,10 @@ const Page = async () => {
               </tr>
             </thead>
             <tbody>
-              {openings.length ? (
-                openings.map((opening) => {
-                  const { _id, title, jobType, location, status, similarity } =
-                    opening;
+              {applications.length ? (
+                applications.map((application) => {
+                  const { _id, openingId, title, jobType, location, status, similarity } =
+                    application;
                   const similarityPercentage =
                     similarity < 10 ? (similarity * 10).toFixed(2) : similarity;
                   return (
@@ -76,8 +72,9 @@ const Page = async () => {
                       </td>
                       <td className="">{similarityPercentage}%</td>
                       <TableAction
-                        data={opening}
-                        path="/dashboard/openings"
+                        data={application}
+                        id={openingId}
+                        path="/dashboard/applications"
                         role={userdata?.role || ""}
                       />
                     </tr>

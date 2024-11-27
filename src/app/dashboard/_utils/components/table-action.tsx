@@ -7,19 +7,23 @@ import { DeleteOpening } from "../actions/openings/opening.controller";
 
 const TableAction = ({
   data,
+  id,
   path,
   role = "applicant",
   tableType = "applications",
+  noApply = false
 }: {
   data: any;
+  id?: string;
   path: string;
   role?: string;
   tableType?: "applications" | "openings";
+  noApply?: boolean;
 }) => {
   const { _id } = data;
   return (
     <div className="flex items-center justify-center gap-2 py-2">
-      <Link href={`${path}/${_id}`}>
+      <Link href={`${path}/${id || _id}`}>
         <Button  variant="outline">
           View
         </Button>
@@ -34,7 +38,7 @@ const TableAction = ({
           <DeleteAction action={DeleteOpening} _id={_id} />
         </>
       ) : tableType === "openings" ? (
-        <Apply _id={_id} />
+        <Apply _id={_id} noApply={noApply} />
       ) : null}
     </div>
   );

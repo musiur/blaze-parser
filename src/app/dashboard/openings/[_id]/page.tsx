@@ -53,7 +53,12 @@ const Page = async ({ params }: { params: { _id: string } }) => {
             </Button>
           </Link>
         ) : (
-          <Apply _id={params?._id} />
+          <Apply
+            _id={params?._id}
+            noApply={
+              opening?.applications?.includes(userdata?._id) ? true : false
+            }
+          />
         )}
       </CardFooter>
     </Card>

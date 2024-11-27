@@ -1,4 +1,3 @@
-import { PdfParser } from "@/app/_utils/components/pdf-parser";
 import { A_GetUser } from "@/app/auth/_utils/actions/user.controller";
 import ResumeUpload from "../_utils/components/resume-upload";
 import { Badge } from "@/components/ui/badge";
@@ -6,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Page = async () => {
   const result: any = await A_GetUser();
+  console.log(result)
   return (
     <div className="space-y-8 max-w-lg mx-auto grid grid-cols-1 gap-4">
       <div className="space-y-2">

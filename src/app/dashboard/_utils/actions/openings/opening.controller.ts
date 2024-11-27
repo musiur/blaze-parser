@@ -185,7 +185,7 @@ export const DeleteOpening = async (_id: string) => {
                 message: "No token found",
             }
         }
-        await Application.deleteMany({ recruiterId: _id });
+        await Application.deleteMany({ openingId: _id });
 
         await Opening.findOneAndDelete({ _id });
 

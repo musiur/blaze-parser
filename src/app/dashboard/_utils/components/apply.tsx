@@ -7,7 +7,7 @@ import { useState } from "react";
 import { PostApplication } from "../actions/applications/application.controller";
 import ResponseX from "@/components/molecules/response.x";
 
-const Apply = ({ _id }: { _id: string }) => {
+const Apply = ({ _id, noApply }: { _id: string; noApply?: boolean }) => {
   const [pending, setPending] = useState(false);
 
   const applyNow = async () => {
@@ -18,14 +18,19 @@ const Apply = ({ _id }: { _id: string }) => {
     setPending(false);
   };
   return (
-    <Button onClick={applyNow} disabled={pending} className="gap-0">
+    <Button
+      onClick={applyNow}
+      disabled={pending || noApply}
+      className="gap-0"
+      variant={noApply ? "secondary" : "default"}
+    >
       <Sun
         className={clsx("h-4 animate-spin", {
           "w-0 opacity-0": !pending,
           "w-4 opacity-100": pending,
         })}
       />
-      {pending ? null : "Apply"}
+      {pending ? null : noApply ? "Applied" : "Apply"}
     </Button>
   );
 };
