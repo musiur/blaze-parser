@@ -107,7 +107,10 @@ export function PdfParser({ reupload = false }: { reupload?: boolean }) {
             )}
           />
           <div className="flex justify-end">
-            <Button type="submit">
+            <Button
+              type="submit"
+              disabled={!pdfFileText || form.formState.isSubmitting}
+            >
               {form.formState.isSubmitting ? (
                 <Sun className="w-4 h-4 animate-spin" />
               ) : (
@@ -142,7 +145,7 @@ export function PdfParser({ reupload = false }: { reupload?: boolean }) {
         </div>
         <div className="bg-gray-100 p-4 rounded-2xl mt-10 border">
           {pdfFileText
-            ? pdfFileText.replaceAll("_", "")
+            ? pdfFileText.replaceAll("_", "")?.slice(0, 100) + "..."
             : "No file chosen and information found!"}
         </div>
       </div>

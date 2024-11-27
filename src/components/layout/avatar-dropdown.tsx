@@ -14,7 +14,7 @@ import Link from "next/link";
 import Logout from "./logout";
 
 const AvatarDropdown = ({ data }: { data: any }) => {
-  const { role } = data;
+  const { name } = data;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -33,7 +33,7 @@ const AvatarDropdown = ({ data }: { data: any }) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <Link href={`/dashboard`}>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuLabel>{name}</DropdownMenuLabel>
         </Link>
         <DropdownMenuSeparator />
         <Link href={`/dashboard/`}>
