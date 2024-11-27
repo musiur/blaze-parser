@@ -125,14 +125,14 @@ export function PdfParser({ reupload = false }: { reupload?: boolean }) {
         </form>
       </Form>
       <div className="space-y-4">
-        <div className="flex justify-between items-center gap-4">
+        <div className="space-y-2">
           <p className="font-bold">Extracted data</p>
-          <div className="flex items-center justify-end gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             {["raw", "pdf-to-text", "parser"].map((tag) => {
               return (
                 <code
                   key={tag}
-                  className="px-2 py-[2px] rounded-md border border-gray-400 bg-white"
+                  className="px-2 rounded-md border bg-gray-200 text-gray-600 font-semibold"
                 >
                   {tag}
                 </code>

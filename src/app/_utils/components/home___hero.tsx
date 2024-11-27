@@ -27,7 +27,7 @@ const Home___Hero = () => {
             shine={true}
             color="hsl(var(--primary))"
           >
-            RESUME PARSING
+            RESUME SCREENING
           </HeadingOne>
           <HeadingOne delay={1}>Tool</HeadingOne>
         </Anim___FadeUp>

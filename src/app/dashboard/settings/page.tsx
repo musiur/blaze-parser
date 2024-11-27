@@ -15,7 +15,7 @@ const Page = async () => {
         <div className="space-y-4">
           <h3 className="font-semibold text-lg md:text-xl">My Resume</h3>
           {result?.data?.resumeData ? (
-            <div className="bg-gray-100 p-4 rounded-lg border-b-4 border-primary/30">
+            <div className="bg-gray-100 p-4 rounded-lg border-b-4 border-primary/30 break-words">
               {result?.data?.resumeData}
             </div>
           ) : null}
