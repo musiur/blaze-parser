@@ -26,7 +26,7 @@ const Page = async ({ params }: { params: { _id: string } }) => {
     throw new Error("User role not found");
   }
   return (
-    <Card className="max-w-[400px]">
+    <Card className="max-w-[400px] mx-auto border-none shadow-none">
       <CardHeader>
         <CardTitle>Opening: {opening?.title}</CardTitle>
         <CardDescription>{opening?.description?.slice(0, 350)}</CardDescription>

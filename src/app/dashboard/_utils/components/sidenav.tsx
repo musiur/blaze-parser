@@ -24,7 +24,7 @@ const SideNav = ({
   return (
     <div
       className={clsx(
-        "fixed top-0 z-50 left-0 w-auto border-r bg-white/60 backdrop-blur-xl lg:bg-gray-100/40 dark:bg-gray-800/40 min-h-[100vh] lg:relative min-w-[200px] transition-all duration-300",
+        "fixed top-0 z-50 left-0 w-auto border-r bg-white/60 backdrop-blur-xl lg:bg-gray-100/40 dark:bg-gray-800/40 min-h-[100vh] lg:sticky min-w-[200px] transition-all duration-300",
         {
           "translate-x-[-100%] lg:translate-x-0": !open,
           "translate-x-0": open,

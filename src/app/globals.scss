@@ -74,7 +74,7 @@
 
 @layer base {
   * {
-    @apply p-0 m-0 min-w-0 box-border text-[16px];
+    @apply p-0 m-0 min-w-0 box-border text-[14px] sm:text-[16px];
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;

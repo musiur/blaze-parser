@@ -68,16 +68,16 @@ export function PdfParser({ reupload = false }: { reupload?: boolean }) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-6 bg-gray-200 p-4 rounded-2xl"
+          className="space-y-6 bg-white p-4 rounded-2xl border-2 border-dotted"
         >
           <FormField
             control={form.control}
             name="pdfFile"
             render={({ field }) => (
-              <FormItem className="bg-white rounded-lg p-4">
+              <FormItem>
                 <FormLabel>
                   Upload your Resume/CV&nbsp;
-                  <span className="text-pink-600">* pdf only</span>
+                  <span className="text-pink-600 uppercase font-semibold">(pdf only)</span>
                 </FormLabel>
                 <FormControl>
                   <Input
@@ -127,28 +127,30 @@ export function PdfParser({ reupload = false }: { reupload?: boolean }) {
           </div>
         </form>
       </Form>
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <p className="font-bold">Extracted data</p>
-          <div className="flex flex-wrap items-center gap-2">
-            {["raw", "pdf-to-text", "parser"].map((tag) => {
-              return (
-                <code
-                  key={tag}
-                  className="px-2 rounded-md border bg-gray-200 text-gray-600 font-semibold"
-                >
-                  {tag}
-                </code>
-              );
-            })}
+      {pdfFileText ? (
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <p className="font-bold">Extracted data</p>
+            <div className="flex flex-wrap items-center gap-2">
+              {["raw", "pdf-to-text", "parser"].map((tag) => {
+                return (
+                  <code
+                    key={tag}
+                    className="px-2 rounded-md border bg-gray-200 text-gray-600 font-semibold"
+                  >
+                    {tag}
+                  </code>
+                );
+              })}
+            </div>
+          </div>
+          <div className="bg-gray-100 p-4 rounded-2xl mt-10 border">
+            {pdfFileText
+              ? pdfFileText.replaceAll("_", "")?.slice(0, 100) + "..."
+              : "No file chosen and information found!"}
           </div>
         </div>
-        <div className="bg-gray-100 p-4 rounded-2xl mt-10 border">
-          {pdfFileText
-            ? pdfFileText.replaceAll("_", "")?.slice(0, 100) + "..."
-            : "No file chosen and information found!"}
-        </div>
-      </div>
+      ) : null}
     </div>
   );
 }

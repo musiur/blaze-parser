@@ -23,10 +23,10 @@ const SideNavLinks = () => {
             <Link
               key={id}
               className={clsx(
-                "flex items-center gap-3 rounded-lg px-3 py-2 text-gray-900 transition-all hover:text-gray-900 [&>svg]:h-4 [&>svg]:w-4",
+                "flex items-center gap-3 rounded-lg px-3 py-2 text-gray-900 transition-all hover:text-gray-900 [&>svg]:h-4 [&>svg]:w-4 font-medium",
                 {
-                  "bg-gray-200": pathname === link,
-                  "bg-none": pathname !== link,
+                  "bg-gradient-to-l from-white to-secondary text-primary": pathname === link,
+                  "bg-none hover:bg-gray-200": pathname !== link,
                 }
               )}
               href={link}

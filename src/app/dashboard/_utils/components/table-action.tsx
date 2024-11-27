@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Pen, View } from "lucide-react";
+import { Eye, Pen } from "lucide-react";
 import Link from "next/link";
 import DeleteAction from "./delete-action";
 import Apply from "./apply";
@@ -18,10 +18,10 @@ const TableAction = ({
 }) => {
   const { _id } = data;
   return (
-    <td className="flex items-center gap-2">
+    <div className="flex items-center justify-center gap-2 py-2">
       <Link href={`${path}/${_id}`}>
-        <Button size="icon" variant="outline">
-          <View className="w-4 h-4" />
+        <Button  variant="outline">
+          View
         </Button>
       </Link>
       {role === "recruiter" ? (
@@ -36,7 +36,7 @@ const TableAction = ({
       ) : tableType === "openings" ? (
         <Apply _id={_id} />
       ) : null}
-    </td>
+    </div>
   );
 };
 

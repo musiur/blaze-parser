@@ -6,6 +6,7 @@ import {
 } from "../_utils/actions/applications/application.controller";
 import { FileWarning } from "lucide-react";
 import NoFile from "@/components/molecules/nofile";
+import { Badge } from "@/components/ui/badge";
 
 const Page = async () => {
   let openings: any[] = [];
@@ -30,7 +31,7 @@ const Page = async () => {
       {!openings?.length ? (
         <NoFile />
       ) : (
-        <div className="overflow-auto">
+        <div className="rounded-xl overflow-auto border">
           <table className="w-full">
             <thead>
               <tr className="bg-primary text-white">
@@ -47,13 +48,33 @@ const Page = async () => {
                 openings.map((opening) => {
                   const { _id, title, jobType, location, status, similarity } =
                     opening;
+                  const similarityPercentage =
+                    similarity < 10 ? (similarity * 10).toFixed(2) : similarity;
                   return (
-                    <tr key={_id} className="border-b border-r">
-                      <td className="border-l">{title}</td>
-                      <td className="border-l">{location}</td>
-                      <td className="border-x">{jobType}</td>
-                      <td className="border-x">{status}</td>
-                      <td className="border-x">{similarity}%</td>
+                    <tr
+                      key={_id}
+                      className="border-b hover:bg-gradient-to-r from-white via-white to-secondary hover:opacity-100 transition duration-300 ease-in-out"
+                    >
+                      <td className="">{title}</td>
+                      <td className="">{location}</td>
+                      <td className="min-w-[200px]">
+                        <Badge variant="outline">{jobType}</Badge>
+                      </td>
+                      <td className="">
+                        <Badge
+                          variant={
+                            status === "accepted"
+                              ? "default"
+                              : status === "rejected"
+                              ? "destructive"
+                              : "secondary"
+                          }
+                          className="uppercase"
+                        >
+                          {status}
+                        </Badge>
+                      </td>
+                      <td className="">{similarityPercentage}%</td>
                       <TableAction
                         data={opening}
                         path="/dashboard/openings"

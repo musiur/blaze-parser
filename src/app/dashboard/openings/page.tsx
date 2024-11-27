@@ -8,6 +8,7 @@ import {
 } from "../_utils/actions/openings/opening.controller";
 import { FileWarning } from "lucide-react";
 import NoFile from "@/components/molecules/nofile";
+import { Badge } from "@/components/ui/badge";
 
 const Page = async () => {
   let openings: any[] = [];
@@ -23,49 +24,40 @@ const Page = async () => {
     // need to console here to see the error
   }
   return (
-    <div className="space-y-8">
-      <div className="flex justify-between">
-        <h2 className="text-lg md:text-xl font-semibold">Openings</h2>
-        {userdata?.role === "recruiter" ? (
+    <div className="space-y-8 max-w-lg mx-auto">
+      {userdata?.role === "recruiter" ? (
+        <div className="flex justify-end">
           <Link href="/dashboard/openings/open">
             <Button>Open</Button>
           </Link>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
 
       {openings?.length ? (
-        <div className="overflow-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="bg-primary text-white">
-                <th>Role</th>
-                <th>Location</th>
-                <th>Salary</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {openings.length
-                ? openings.map((opening) => {
-                    const { _id, title, salary, location } = opening;
+        <div className="grid grid-cols-1 gap-4 pb-16">
+          {openings.length
+            ? openings.map((opening) => {
+                const { _id, title, salary, location } = opening;
 
-                    return (
-                      <tr key={_id} className="border-b border-r">
-                        <td className="border-l">{title}</td>
-                        <td className="border-l">{location}</td>
-                        <td className="border-x">{salary}</td>
-                        <TableAction
-                          data={opening}
-                          path="/dashboard/openings"
-                          role={userdata?.role || ""}
-                          tableType="openings"
-                        />
-                      </tr>
-                    );
-                  })
-                : null}
-            </tbody>
-          </table>
+                return (
+                  <div key={_id} className="p-4 rounded-lg border-4 border-white shadow-lg hover:border-primary bg-gradient-to-tl hover:bg-gradient-to-br from-white via-white to-gray-200 hover:to-secondary hover:opacity-100 transition duration-300 ease-in-out">
+                    <h4 className="font-semibold text-md md:text-lg">
+                      {title}
+                    </h4>
+                    <p className="text-gray-500">{location}</p>
+                    <Badge>BDT {salary}</Badge>
+                    <div className="flex justify-end">
+                      <TableAction
+                        data={opening}
+                        path="/dashboard/openings"
+                        role={userdata?.role || ""}
+                        tableType="openings"
+                      />
+                    </div>
+                  </div>
+                );
+              })
+            : null}
         </div>
       ) : (
         <NoFile />

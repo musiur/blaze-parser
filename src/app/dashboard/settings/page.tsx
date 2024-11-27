@@ -10,7 +10,7 @@ const Page = async () => {
     <div className="space-y-8 max-w-lg mx-auto grid grid-cols-1 gap-4">
       <div className="space-y-2">
       <h2 className="text-2xl font-semibold">Hello there!</h2>
-      <div className="p-4 rounded-lg border flex items-center gap-4">
+      <div className="p-4 rounded-lg border flex items-center gap-4 bg-gradient-to-tl from-white via-white to-secondary">
         <div>
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" />
