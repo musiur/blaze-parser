@@ -21,7 +21,9 @@ const ResumeUpload = ({ resumeData }: { resumeData: string }) => {
         </div>
         {resumeData ? (
           <div className="bg-gray-100 p-4 rounded-lg border-b-4 border-green-800 break-words">
-            {resumeData?.slice(0, 100)}...
+            {/* {resumeData?.slice(0, 100)}... */}
+            {resumeData}
+            {/* ....replace(/[^a-zA-Z0-9\s]/g, '') */}
           </div>
         ) : null}
       </div>

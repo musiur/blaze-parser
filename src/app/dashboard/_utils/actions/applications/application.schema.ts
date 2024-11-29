@@ -10,6 +10,7 @@ export const ApplicationSchema = z.object({
     applicant: z.string(),
     recruiter: z.string(),
     similarity: z.number(),
+    predictedSalary: z.number().default(0),
     status: z.string().default("pending"),
     appliedAt: z.date().default(new Date)
 })

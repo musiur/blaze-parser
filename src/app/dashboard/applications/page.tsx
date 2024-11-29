@@ -36,14 +36,23 @@ const Page = async () => {
                 <th>Type</th>
                 <th>Status</th>
                 <th>Similarity</th>
+                <th>Predicted Salary</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {applications.length ? (
                 applications.map((application) => {
-                  const { _id, openingId, title, jobType, location, status, similarity } =
-                    application;
+                  const {
+                    _id,
+                    openingId,
+                    title,
+                    jobType,
+                    location,
+                    status,
+                    similarity,
+                    predictedSalary
+                  } = application;
                   const similarityPercentage =
                     similarity < 10 ? (similarity * 10).toFixed(2) : similarity;
                   return (
@@ -71,6 +80,7 @@ const Page = async () => {
                         </Badge>
                       </td>
                       <td className="">{similarityPercentage}%</td>
+                      <td className="">BDT {predictedSalary}</td>
                       <TableAction
                         data={application}
                         id={openingId}

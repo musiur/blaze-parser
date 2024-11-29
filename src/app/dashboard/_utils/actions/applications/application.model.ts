@@ -50,6 +50,11 @@ const ApplicationSchema: Schema<IApplication> = new Schema({
         required: true,
     },
 
+    predictedSalary: {
+        type: Number,
+        required: false,
+    },
+
     status: {
         type: String,
         required: true,

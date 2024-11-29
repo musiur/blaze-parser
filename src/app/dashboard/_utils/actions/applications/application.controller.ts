@@ -187,6 +187,7 @@ export const PostApplication = async (data: any) => {
             }
         }
 
+        // get similarities using consine algorithm
         const doc1 = openingResult?.data?.description;
         // @ts-ignore
         const doc2 = userdataFromDb?.data?.resumeData;
@@ -194,6 +195,35 @@ export const PostApplication = async (data: any) => {
 
         const similarities = calculateSimilarity(similarityPayload);
 
+        // get predicted salary after extracting features from resume using OLLAMA llama3.2
+        const extractedFeatures = await fetch(`${process.env.OLLAMA_BASEURL}/generate/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                prompt: userdataFromDb?.data?.resumeData?.replace(/[^a-zA-Z0-9\s]/g, '')
+            })
+        })
+        const responseExtractedFeatures = await extractedFeatures.json();
+        const parsedExtractedFeatures = JSON.parse(responseExtractedFeatures?.response || "{}")
+        console.log(parsedExtractedFeatures)
+
+
+        // get predicted salary
+        const prediction = await fetch(`${process.env.PREDICTOR_BASEURL}/predict` || "", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                ...parsedExtractedFeatures
+            })
+        })
+        const responsePrediction = await prediction.json();
+        console.log(responsePrediction?.predicted_salary)
+
+        // prepare data
         data.similarity = similarities
         data.applicantId = userdata._id;
         data.recruiterId = openingResult?.data?.recruiter;
@@ -203,11 +233,12 @@ export const PostApplication = async (data: any) => {
         data.location = openingResult?.data?.location;
         data.jobType = openingResult?.data?.jobType;
         data.status = "pending";
+        data.predictedSalary = responsePrediction?.predicted_salary;
         data.appliedAt = new Date();
 
 
         const response = await Application.create(data);
-
+        console.log(response)
 
         if (!response) {
             return {
@@ -235,6 +266,7 @@ export const PostApplication = async (data: any) => {
         }
 
     } catch (error) {
+        console.log(error)
         return {
             success: false,
             message: "Something went wrong",
@@ -278,6 +310,7 @@ export const DeleteApplication = async (_id: string) => {
             }
         }
         const response = await Application.deleteOne({ _id });
+        revalidatePath("/dashboard/applications")
         return {
             success: true,
             data: response,

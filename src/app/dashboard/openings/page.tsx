@@ -25,14 +25,6 @@ const Page = async () => {
   }
   return (
     <div className="space-y-8 max-w-lg mx-auto">
-      {userdata?.role === "recruiter" ? (
-        <div className="flex justify-end">
-          <Link href="/dashboard/openings/open">
-            <Button>Open</Button>
-          </Link>
-        </div>
-      ) : null}
-
       {openings?.length ? (
         <div className="grid grid-cols-1 gap-4 pb-16">
           {openings.length
@@ -63,6 +55,13 @@ const Page = async () => {
       ) : (
         <NoFile />
       )}
+      {userdata?.role === "recruiter" ? (
+        <div className="flex justify-end">
+          <Link href="/dashboard/openings/open" className="w-full">
+            <Button className="w-full uppercase">add a new opening</Button>
+          </Link>
+        </div>
+      ) : null}
     </div>
   );
 };

@@ -26,20 +26,8 @@ const Page = async ({ params }: { params: { _id: string } }) => {
     throw new Error("User role not found");
   }
   return (
-    <Card className="max-w-[400px] mx-auto border-none shadow-none">
-      <CardHeader>
-        <CardTitle>Opening: {opening?.title}</CardTitle>
-        <CardDescription>{opening?.description?.slice(0, 350)}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="flex items-center gap-2">
-          <span className="font-semibold">Location</span> {opening?.location}
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="font-semibold">Salary</span> {opening?.salary} BDT
-        </div>
-      </CardContent>
-      <CardFooter className="flex flex-wrap justify-between gap-4">
+    <div className="max-w-[600px] mx-auto border-none shadow-none space-y-8">
+      <div className="flex flex-wrap justify-between gap-4">
         <Link href="/dashboard/openings">
           <Button size="icon" variant="outline">
             <ChevronLeft className="w-4 h4" />
@@ -60,8 +48,22 @@ const Page = async ({ params }: { params: { _id: string } }) => {
             }
           />
         )}
-      </CardFooter>
-    </Card>
+      </div>
+      <div className="space-y-4">
+        <h3 className="font-semibold text-xl md:text-3xl">
+          Opening: {opening?.title}
+        </h3>
+        <div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold">Location</span> {opening?.location}
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold">Salary</span> {opening?.salary} BDT
+          </div>
+        </div>
+        <p>{opening?.description}</p>
+      </div>
+    </div>
   );
 };
 export default Page;

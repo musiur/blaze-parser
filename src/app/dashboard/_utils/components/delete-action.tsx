@@ -16,7 +16,6 @@ const DeleteAction = ({ action, _id }: { action: Function; _id: string }) => {
   };
   return (
     <Button
-      size="icon"
       variant="outline"
       onClick={delAction}
       disabled={pending}

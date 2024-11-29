@@ -4,6 +4,7 @@ import Link from "next/link";
 import DeleteAction from "./delete-action";
 import Apply from "./apply";
 import { DeleteOpening } from "../actions/openings/opening.controller";
+import { DeleteApplication } from "../actions/applications/application.controller";
 
 const TableAction = ({
   data,
@@ -31,11 +32,11 @@ const TableAction = ({
       {role === "recruiter" ? (
         <>
           <Link href={`${path}/update/${_id}`}>
-            <Button size="icon" variant="outline">
+            <Button variant="outline">
               <Pen className="w-4 h-4" />
             </Button>
           </Link>
-          <DeleteAction action={DeleteOpening} _id={_id} />
+          <DeleteAction action={DeleteApplication} _id={_id} />
         </>
       ) : tableType === "openings" ? (
         <Apply _id={_id} noApply={noApply} />
